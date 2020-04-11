@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+export const ALERT_COLOR = "#FFC107";
+export const INFO_COLOR = "#0099ff";
 
 export const DivNotification = styled.div`
-    background: magenta;
+    /* background: magenta; */
     width: 780px;
     height: 380px;
     display: flex;
@@ -12,18 +14,21 @@ export const DivNotification = styled.div`
 export const DivNotificationContainer = styled.div`
     width: 80%;
     height: 100%;
-    background: yellow;
+    /* background: yellow; */
 `;
 
 export const DivNotificationTitle = styled.div`
-    background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: green; */
     width:100%;
     height: 25%;
-    color: ${props => props.inputColor || "blue"}
+    color: ${props => props.inputColor || INFO_COLOR};
 `;
 
 export const DivNotificationIcon = styled.div`
     width: 20%;
-    background: palevioletred;
+    /* background: palevioletred; */
     text-align: center;
 `;

@@ -6,9 +6,13 @@
     outline: 0;
     box-sizing: border-box;
 }
-
+/*
+p {
+    color: #5e5e5e;
+}
+*/
 body {
-    font: 400 14px Roboto, sans-serif;
+    font: 400 18px Roboto, sans-serif;
     background: #f0f0f5;
     -webkit-font-smoothing: antialiased;
 }
@@ -19,4 +23,13 @@ input, button, textarea {
 
 button {
     cursor: pointer;
+    border: none;
+    background-color: #0b226e;
+    border-radius: 4px;
+    padding: 5px 15px;
+    color: #fff;
+}
+
+button:hover {
+    background-color: rgb(8, 131, 14);
 }
