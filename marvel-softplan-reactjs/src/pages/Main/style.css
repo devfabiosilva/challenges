@@ -82,6 +82,8 @@ form#search button {
     border-radius: 4px;
     padding: 5px 15px;
     color: #fff;
+    min-width: 240px;
+    max-width: 280px;
 }
 /*
 .saved-list-btn:hover {

@@ -2,18 +2,26 @@ import React, { useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { FaLanguage } from 'react-icons/fa';
 import Notification from '../../components/notification';
+import Paginate from '../../components/pagination';
 import { connect } from 'react-redux';
+import { checkApiKey } from '../../utils/secure';
 import { m_modifyLanguage } from '../../actions';
-import { L_PT_BR, L_EN_US } from '../../utils/language';
+import { 
+    L_PT_BR, 
+    L_EN_US, 
+    getMarvelLanguageFromLocalStorage,
+} from '../../utils/language';
 import './style.css';
 
 export function Main(props) {
     useEffect (
     () => {
-        console.log("Ola")
-        if (props.state)
-            console.log(props.state)
-    }, [props.state]
+        let marvelLanguage = getMarvelLanguageFromLocalStorage();
+
+        if (marvelLanguage !== props.state.lang)
+            props.mainPageModifyLang(marvelLanguage);
+
+    }, [props]
     )
     return (
         <div className="container">
@@ -30,10 +38,10 @@ export function Main(props) {
                 </div>
                 <div className="list-favorites">
                     <button className="saved-list-btn">
-                        {props.state.interface.goto_saved_list}
+                        { props.state.interface.goto_saved_list }
                     </button>
                     <button className="lang-btn"
-                        label="Idioma"
+                        placeholder="Language/Idioma"
                         onClick={
                             () => props.mainPageModifyLang((props.state.lang===L_EN_US)?L_PT_BR:L_EN_US)
                         }
@@ -41,7 +49,14 @@ export function Main(props) {
                 </div>
             </div>
             <div className="heroes-page">
-                <Notification nError >{props.state.interface.err404_pag_not_found}</Notification>
+                {
+                    (checkApiKey())?
+                        <Notification nAlert title={ props.state.interface.alert_api_conf_title }
+                        >
+                            { props.state.interface.alert_api_conf }
+                        </Notification>
+                    :<Paginate />
+                }
             </div>
         </div>
     );

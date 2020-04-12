@@ -1,5 +1,4 @@
-//import { L_EN_US, L_PT_BR } from '../utils/language';
-
+import { setMarvelLanguageToLocalStorage } from '../utils/language';
 
 const M_NONE = '0';
 const ADD_TO_LIST = '1';
@@ -25,5 +24,5 @@ export function m_removeFromList(index) {
 }
 
 export function m_modifyLanguage(lang) {
-    return { type: MODIFY_LANGUAGE, lang }
+    return { type: MODIFY_LANGUAGE, lang: setMarvelLanguageToLocalStorage(lang) }
 }

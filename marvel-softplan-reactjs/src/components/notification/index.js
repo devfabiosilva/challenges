@@ -62,7 +62,7 @@ export function Notification({ state, nAlert, nError, children, title }) {
                             fontSize: "32px",
                         }
                         }>
-                            {children}
+                            { children }
                     </p>
                 </div>
             </DivNotificationContainer>

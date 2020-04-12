@@ -1,8 +1,11 @@
 export const L_PT_BR = "pt-br";
 export const L_EN_US = "en-us";
+const MARVEL_LANGUAGE = 'marvel_language';
 
 export const LANG_PT_BR = {
     search_hero: "Buscar herói",
+    next: "Próximo",
+    previous: "Anterior",
     go_back: "Voltar",
     not_found: "Não encontrado",
     goto_saved_list: "Ir para lista de itens salvos",
@@ -10,11 +13,15 @@ export const LANG_PT_BR = {
     err404_pag_not_found: "Página não encontrada",
     alert_title: "Alerta",
     info_title: "Info",
-    error_title: "Erro"
+    error_title: "Erro",
+    alert_api_conf_title: "Configuração de API necessária",
+    alert_api_conf: "Você precisa incluir sua chave API e sua chave privada em ./src/utils/secure.js nos campos 'MARVEL_API_KEY' (apiKey) para chave API e 'MARVEL_PRIVATE_KEY' (privKey) para a chave privada"
 }
 
 export const LANG_EN_US = {
     search_hero: "Search hero",
+    next: "Next",
+    previous: "Previous",
     go_back: "Go back",
     not_found: "Not found",
     goto_saved_list: "Go to saved items list",
@@ -22,5 +29,31 @@ export const LANG_EN_US = {
     err404_pag_not_found: "Page not found",
     alert_title: "Alert",
     info_title: "Info",
-    error_title: "Error"
+    error_title: "Error",
+    alert_api_conf_title: "API configuration needed",
+    alert_api_conf: "You need to change your API key and your private key in ./src/utils/secure.js in consts 'MARVEL_API_KEY' (apiKey) and 'MARVEL_PRIVATE_KEY' (privKey)"
 }
+
+export function getMarvelLanguageFromLocalStorage() {
+
+    let language = localStorage.getItem(MARVEL_LANGUAGE);
+
+    if (language===null||language===undefined) {
+
+        localStorage.setItem(MARVEL_LANGUAGE, L_EN_US)
+        language = localStorage.getItem(MARVEL_LANGUAGE);
+
+    }
+
+    return language;
+
+}
+
+export function setMarvelLanguageToLocalStorage(lang) {
+
+    localStorage.setItem(MARVEL_LANGUAGE, lang);
+
+    return localStorage.getItem(MARVEL_LANGUAGE);
+
+}
+
