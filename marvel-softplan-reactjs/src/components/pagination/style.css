@@ -1,31 +1,35 @@
 
 .pagination-container {
     display: block;
-    background-color: crimson;
+/*    background-color: crimson; */
     width: 100%;
     height: 100%;
 }
-
+/*
+.pag-container-class {
+    height: 100%;
+}*/
 .pagination-header {
-    background-color: darkkhaki;
+/*    background-color: darkkhaki; */
+    text-align: center;
     width: 50%;
-    height: 10%;
+    height: 5%;
     margin: 0 auto;
 }
 
 .pagination-body {
-    background-color: darkorange;
-    width: 50%;
-    height: 80%;
+/*    background-color: darkorange; */
+    width: 97%;
+    height: 90%;
     margin: 0 auto;
 }
 
 .pagination-navigator {
     display: flex;
     justify-content: center;
-    background-color: darkslategray;
+/*    background-color: darkslategray; */
     width: 50%;
-    height: 10%;
+    height: 8%;
     margin: 0 auto;
 }
 
@@ -42,11 +46,11 @@
 .pag-next-class {
     display: flex;
     align-items: center;
-    height: 50px;
+    height: 40px;
     background-color: #0b226e;
     justify-content: center;
     cursor: pointer;
-    border: 2px solid tan;
+    border: 2px solid none
 }
 
 .pag-page-class,
@@ -62,23 +66,25 @@
 }
 
 .pagination-navigator ul li:hover {
-    border-radius: 50%;
-    background-color: rgb(8, 131, 14);
+    background-color: rgb(67, 100, 192);
 }
 
 .pagination-navigator ul li a {
     text-align: center;
+    font-size: 16px;
+    color: whitesmoke;
     height: 60%;
     width: 100%;
 }
 
 .pag-previous-class,
-.pag-nextlink-class {
-    max-width: 200px;
+.pag-next-class {
+    min-width: 120px;
+   
 }
 
 .pag-active-class {
-    background-color: #5870c0;
+    background-color: #75cc5f;
     color: wheat;
 }
 

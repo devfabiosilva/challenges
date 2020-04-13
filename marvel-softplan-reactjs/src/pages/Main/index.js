@@ -15,12 +15,11 @@ import './style.css';
 
 export function Main(props) {
     useEffect (
-    () => {
+     () => {
         let marvelLanguage = getMarvelLanguageFromLocalStorage();
 
         if (marvelLanguage !== props.state.lang)
             props.mainPageModifyLang(marvelLanguage);
-
     }, [props]
     )
     return (

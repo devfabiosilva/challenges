@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
+import Cards from '../cards';
 import './style.css';
 
 function teste(e) {
@@ -12,10 +13,10 @@ export function Paginate(props) {
     return (
         <div className="pagination-container">
             <div className="pagination-header">
-                Cabeçalho
+                { props.state.interface.pag_header_search_text }
             </div>
             <div className="pagination-body">
-                Corpo
+                <Cards />
             </div>
             <div className="pagination-navigator">
                 <ReactPaginate
