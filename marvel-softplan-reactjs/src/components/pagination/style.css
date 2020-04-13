@@ -1,0 +1,88 @@
+
+.pagination-container {
+    display: block;
+    background-color: crimson;
+    width: 100%;
+    height: 100%;
+}
+
+.pagination-header {
+    background-color: darkkhaki;
+    width: 50%;
+    height: 10%;
+    margin: 0 auto;
+}
+
+.pagination-body {
+    background-color: darkorange;
+    width: 50%;
+    height: 80%;
+    margin: 0 auto;
+}
+
+.pagination-navigator {
+    display: flex;
+    justify-content: center;
+    background-color: darkslategray;
+    width: 50%;
+    height: 10%;
+    margin: 0 auto;
+}
+
+.pagination-navigator ul {
+    height: 50px;
+    display: flex;
+    list-style: none;
+}
+
+/*.pagination-navigator ul li { */
+.pag-previous-class,
+.pag-page-class,
+.pag-break-class,
+.pag-next-class {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #0b226e;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid tan;
+}
+
+.pag-page-class,
+.pag-break-class {
+    min-width: 43px;
+    max-width: 46px;
+}
+
+.pag-previous-class,
+.pag-next-class {
+    min-width: 200px;
+    max-width: 150px;
+}
+
+.pagination-navigator ul li:hover {
+    border-radius: 50%;
+    background-color: rgb(8, 131, 14);
+}
+
+.pagination-navigator ul li a {
+    text-align: center;
+    height: 60%;
+    width: 100%;
+}
+
+.pag-previous-class,
+.pag-nextlink-class {
+    max-width: 200px;
+}
+
+.pag-active-class {
+    background-color: #5870c0;
+    color: wheat;
+}
+
+.pag-disabled-class {
+    background-color: #88898f;
+    color: rgb(216, 216, 215);
+}

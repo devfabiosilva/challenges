@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
+import './style.css';
 
 function teste(e) {
     console.log("Teste");
@@ -8,31 +9,43 @@ function teste(e) {
 }
 export function Paginate(props) {
 
-    return <ReactPaginate
+    return (
+        <div className="pagination-container">
+            <div className="pagination-header">
+                Cabeçalho
+            </div>
+            <div className="pagination-body">
+                Corpo
+            </div>
+            <div className="pagination-navigator">
+                <ReactPaginate
 
-        pageCount={300}
-        pageRangeDisplayed={8}
-        marginPagesDisplayed={1}
+                    pageCount={300}
+                    pageRangeDisplayed={6}
+                    marginPagesDisplayed={1}
 
-        previousLabel={ props.state.interface.previous }
-        nextLabel={ props.state.interface.next }
-        breakLabel={'...'}
-        onPageChange={ teste }
+                    previousLabel={ props.state.interface.previous }
+                    nextLabel={ props.state.interface.next }
+                    breakLabel={'...'}
+                    onPageChange={ teste }
 
-        breakClassName={ 'pag-break-class' }
-        breakLinkClassName={ 'pag-link-class' }
-        containerClassName={ 'pag-container-class' }
-        pageClassName={ 'pag-page-class' }
-        pageLinkClassName={ 'pag-link-class' }
-        activeClassName={ 'pag-active-class' }
-        activeLinkClassName={ 'pag-activelink-class' }
-        previousClassName={ 'pag-previous-class' }
-        nextClassName={ 'pag-next-class' }
-        previousLinkClassName={ 'pag-prev-link-class' }
-        nextLinkClassName={ 'pag-nextlink-class' }
-        disabledClassName={ 'pag-disabled-class' }
+                    breakClassName={ 'pag-break-class' }
+                    breakLinkClassName={ 'pag-link-class' }
+                    containerClassName={ 'pag-container-class' }
+                    pageClassName={ 'pag-page-class' }
+                    pageLinkClassName={ 'pag-link-class' }
+                    activeClassName={ 'pag-active-class' }
+                    activeLinkClassName={ 'pag-activelink-class' }
+                    previousClassName={ 'pag-previous-class' }
+                    nextClassName={ 'pag-next-class' }
+                    previousLinkClassName={ 'pag-prev-link-class' }
+                    nextLinkClassName={ 'pag-nextlink-class' }
+                    disabledClassName={ 'pag-disabled-class' }
 
-    />
+                />
+            </div>
+        </div>
+    );
 }
 
 const mapStateToProps = (state, ownProps) => ({
