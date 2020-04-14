@@ -3,6 +3,7 @@ export const L_EN_US = "en-us";
 const MARVEL_LANGUAGE = 'marvel_language';
 
 export const LANG_PT_BR = {
+
     search_hero: "Buscar herói",
     next: "Próximo  >",
     previous: "< Anterior",
@@ -16,11 +17,14 @@ export const LANG_PT_BR = {
     error_title: "Erro",
     alert_api_conf_title: "Configuração de API necessária",
     alert_api_conf: "Você precisa incluir sua chave API e sua chave privada em ./src/utils/secure.js nos campos 'MARVEL_API_KEY' (apiKey) para chave API e 'MARVEL_PRIVATE_KEY' (privKey) para a chave privada",
-    pag_header_search_text: "Resultado(s): ",
-    loading_characters: "Carregando heróis... espere ..."
+    pag_header_search_text: "Resultado(s): Encotrado %d heróis [Página %e de %f]",
+    loading_characters: "Carregando heróis... espere ...",
+    loading_page: "Carregando página %d de %e"
+
 }
 
 export const LANG_EN_US = {
+
     search_hero: "Search hero",
     next: "Next >",
     previous: "< Previous",
@@ -34,8 +38,10 @@ export const LANG_EN_US = {
     error_title: "Error",
     alert_api_conf_title: "API configuration needed",
     alert_api_conf: "You need to change your API key and your private key in ./src/utils/secure.js in consts 'MARVEL_API_KEY' (apiKey) and 'MARVEL_PRIVATE_KEY' (privKey)",
-    pag_header_search_text: "Result(s): ",
-    loading_characters: "Loading heroes... please wait ..."
+    pag_header_search_text: "Result(s): Found %d heroes(s) [Page %e of %f]",
+    loading_characters: "Loading heroes... please wait ...",
+    loading_page: "Loading page %d of %e"
+
 }
 
 export function getMarvelLanguageFromLocalStorage() {

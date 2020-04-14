@@ -92,3 +92,7 @@
     background-color: #88898f;
     color: rgb(216, 216, 215);
 }
+
+.card-img {
+    cursor: pointer;
+}

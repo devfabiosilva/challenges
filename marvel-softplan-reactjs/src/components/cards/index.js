@@ -1,60 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './style.css';
 import { f_getKey } from '../../utils';
-import { allHeroes } from './../../service/api';
-import Notification from '../notification';
 import { connect } from 'react-redux';
 
-function formatPagination(marvel_res) {
+export function Cards({ formatedData }) {
 
-    let data = [];
-    let tmp = null;
-    let i;
-    let marvel_res_len = marvel_res.length-1;
-
-    for (i = 0 ; i < 8 ; i++ ) {
-
-        if (i <= marvel_res_len){
-            tmp = {
-                id: marvel_res[i].id,
-                name: marvel_res[i].name,
-                thumb: `${marvel_res[i].thumbnail.path}.${marvel_res[i].thumbnail.extension}`
-            }
-        } else {
-            tmp = {
-                id: f_getKey(),
-                name: "",
-                thumb: ""
-            }
-        }
-
-        data.push(tmp);
-
-    }
-
-    return data;
-
-}
-
-export function Cards(props) {
-
-    const [ formatedData, setFormatedData ] = useState(null);
-
-    useEffect(
-        () => {
-
-                allHeroes(10).then((res) => {
-
-                    if (!formatedData)
-                        setFormatedData(formatPagination(res.data.data.results));
-                    
-                    console.log(formatedData);
-
-                }, (e) => console.log(e))
-        }, [formatedData]
-    )
-
-    if (formatedData)
     return (
         <div className="main-card-container">
             <div className="container-row">
@@ -123,18 +73,6 @@ export function Cards(props) {
             </div>
         </div>
     );
-    else 
-        return(
-            <div
-                className="main-card-container"
-                style={
-                    {
-                        display: "flex",
-                        justifyContent: "center"}
-                    }>
-                <Notification>{ props.state.interface.loading_characters }</Notification>
-            </div>
-        )
 }
 
 const mapStateToProps = (state, ownProps) => ({
