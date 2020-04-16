@@ -19,7 +19,11 @@ export const LANG_PT_BR = {
     alert_api_conf: "Você precisa incluir sua chave API e sua chave privada em ./src/utils/secure.js nos campos 'MARVEL_API_KEY' (apiKey) para chave API e 'MARVEL_PRIVATE_KEY' (privKey) para a chave privada",
     pag_header_search_text: "Resultado(s): Encontrado %d heróis [Página %e de %f]",
     loading_characters: "Carregando heróis... espere ...",
-    loading_page: "Carregando página %d de %e"
+    loading_page: "Carregando página %d de %e",
+    finding: 'Encontrando "%d" ...',
+    err_search_not_found: 'Herói não encontrado: "%d"',
+    err_not_found_title: "Não encontrado",
+    err_marvel_server_error_msg: "Erro no servidor Marvel '%d' com a mensagem %e"
 
 }
 
@@ -40,7 +44,11 @@ export const LANG_EN_US = {
     alert_api_conf: "You need to change your API key and your private key in ./src/utils/secure.js in consts 'MARVEL_API_KEY' (apiKey) and 'MARVEL_PRIVATE_KEY' (privKey)",
     pag_header_search_text: "Result(s): Found %d heroes(s) [Page %e of %f]",
     loading_characters: "Loading heroes... please wait ...",
-    loading_page: "Loading page %d of %e"
+    loading_page: "Loading page %d of %e",
+    finding: 'Finding "%d"...',
+    err_search_not_found: 'Hero NOT FOUND: "%d"',
+    err_not_found_title: "NOT FOUND",
+    err_marvel_server_error_msg: "Marvel server error '%d' with message %e"
 
 }
 

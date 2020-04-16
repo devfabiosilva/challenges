@@ -12,6 +12,12 @@ import { FiInfo, FiAlertTriangle, FiXCircle } from 'react-icons/fi';
 
 const NOTF_ICON_SZ = 120;
 
+export const notificationType = {
+    NOTF_INFO: 1,
+    NOTF_ALERT: 2,
+    NOTF_ERROR: 3
+}
+
 function NotfIcon( { nAlert, nError } ) {
 
     if (nAlert)
@@ -24,7 +30,17 @@ function NotfIcon( { nAlert, nError } ) {
 
 }
 
-export function Notification({ state, nAlert, nError, children, title }) {
+export function Notification({ state, nAlert, nError, children, title, nType }) {
+
+    if (nType) {
+
+        nAlert = (nType===notificationType.NOTF_ALERT);
+
+        if (!nAlert)
+            nError = (nType===notificationType.NOTF_ERROR);
+
+    }
+
     return (
         <DivNotification>
             <DivNotificationIcon>

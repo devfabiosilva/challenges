@@ -43,13 +43,24 @@ export function Main(props) {
         setInputSearch(e.target.value);
     }
 
+    function onKeyUpEvt() {
+        if (inputSearch==="") {
+            props.findMyHero("");
+        }
+    }
+
     return (
         <div className="container">
             <div className="tools">
                 <div className="search-tools">
                     <form autoComplete="on" id="search">
-                        <input id="search-input" onChange={findHeroChange} placeholder=
-                            {props.state.interface.search_hero}
+                        <input
+
+                            id="search-input"
+                            onChange={ findHeroChange }
+                            placeholder={ props.state.interface.search_hero }
+                            onKeyUp={ onKeyUpEvt }
+
                         type="search" />
                         <button className="fav-button" onClick={findHero}>
                             <FiSearch size={18} color="#FFF" />

@@ -30,6 +30,5 @@ export function m_modifyLanguage(lang) {
 }
 
 export function m_findHero(whatFindText) {
-    console.log(whatFindText);
     return { type: FIND_HERO, whatFindText }
 }

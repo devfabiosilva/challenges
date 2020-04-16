@@ -3,12 +3,10 @@ import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import Cards from '../cards';
 import { f_getKey } from '../../utils';
-import { allHeroes } from './../../service/api';
-import Notification from '../notification';
+import { allHeroes, THUMBNAIL_PER_PAGE } from './../../service/api';
+import Notification, { notificationType } from '../notification';
 import { m_findHero } from '../../actions';
 import './style.css';
-
-const THUMBNAIL_PER_PAGE = 8;
 
 function formatPagination(marvel_res) {
 
@@ -63,6 +61,14 @@ export function Paginate(props) {
     const [ stringSearchResult, setStringSearchResult ] = useState(null);
     const [ pageData, setPageData ] = useState(null);
     const [ notificationMessage, setNotificationMessage ] = useState(null);
+    /*
+    // Improve in TypeScript version
+     Notification message should be null or {
+         type as notification
+         title,
+         message,
+     }
+    */
     const [ beginNavigate, setBeginNavigate ] = useState(
         {
             start: false,
@@ -85,6 +91,7 @@ export function Paginate(props) {
         () => {
 
             let info;
+            let tmp;
 
             function formatStringSearchResult() {
 
@@ -121,13 +128,39 @@ export function Paginate(props) {
 
                 props.findMyHero(null);
 
+                setNotificationMessage(
+                    {
+                        type: notificationType.NOTF_INFO,
+                        title: "",
+                        message: props.state.interface.finding.replace(/%d/, props.whatFind)
+                    }
+                );
+
+            } else if (beginNavigate.textToFind) {
+
+                if (props.whatFind==="") {
+
+                    setNotificationMessage(null);
+                    setPaginationInfo(null);
+                    setBeginNavigate(
+                        {
+                            start: false,
+                            currentPage: 0,
+                            offset: 0,
+                            textToFind: null
+                        }
+                    )
+                    setFormatedData(null);
+
+                }
+
             }
 
             if (beginNavigate.start) {
 
                 allHeroes(beginNavigate.offset, beginNavigate.textToFind).then((res) => {
 
-                    setFormatedData(formatPagination(res.data.data.results));
+                    setFormatedData(formatPagination(res.data.data.results))
 
                     info = {
 
@@ -137,14 +170,60 @@ export function Paginate(props) {
                         count: res.data.data.count
     
                     };
-                    
+      
                     setPaginationInfo(
                         info
                     );
 
-                    setNotificationMessage(null);
+                    if (info.count)
+                        setNotificationMessage(null);
+                    else
+                        setNotificationMessage(
+                            {
+                                type: notificationType.NOTF_ALERT,
+                                title: props.state.interface.err_not_found_title,
+                                message: props.state.interface.err_search_not_found.replace(/%d/, beginNavigate.textToFind)
+                            }
+                        );
 
-                }, (e) => console.log(e));
+                }, (e) => {
+
+                    if ((!notificationMessage)||(notificationMessage.type!==notificationType.NOTF_ERROR)) {
+
+                        tmp=props.state.interface.err_marvel_server_error_msg.replace(
+                                /%d/,
+                                e.internalError.code
+                            );
+
+                        setNotificationMessage(
+                            {
+                                type: notificationType.NOTF_ERROR,
+                                title: `${e.err} (${(e.errTxt)})`,
+                                message: tmp.replace(/%e/, e.internalError.message)
+
+                            }
+                        );
+                        setPaginationInfo(
+                            {
+
+                                offset: 0,
+                                limit:  0,
+                                total:  0,
+                                count:  0
+                            }
+                        );
+                        setBeginNavigate(
+                            {
+                                start: false,
+                                currentPage: 0,
+                                offset: 0,
+                                textToFind: null
+                            }
+                        )
+                        setFormatedData(null);
+                    }
+
+                });
 
                 setBeginNavigate(
                     {
@@ -161,28 +240,57 @@ export function Paginate(props) {
                 setStringSearchResult(formatStringSearchResult());
             else
                 allHeroes(0).then((res) => {
-
                     if (!formatedData)
                         setFormatedData(formatPagination(res.data.data.results));
-
-//                    if (!paginationInfo) {
-
-                        info = {
-
-                            offset: res.data.data.offset,
-                            limit: res.data.data.limit,
-                            total: res.data.data.total,
-                            count: res.data.data.count
-    
-                        };
-                    
                         setPaginationInfo(
-                            info
+                            {
+
+                                offset: res.data.data.offset,
+                                limit: res.data.data.limit,
+                                total: res.data.data.total,
+                                count: res.data.data.count
+        
+                            }
                         );
 
-//                    }
+                }, (e) => {
 
-                }, (e) => console.log(e))
+                    if (!notificationMessage) {
+
+                        tmp=props.state.interface.err_marvel_server_error_msg.replace(
+                            /%d/,
+                            e.internalError.code
+                        );
+
+                        setNotificationMessage(
+                            {
+                                type: notificationType.NOTF_ERROR,
+                                title: `${e.err} (${(e.errTxt)})`,
+                                message: tmp.replace(/%e/, e.internalError.message)
+                                //message: `Erro no servidor Marvel "${e.internalError.code}" com a mensagem: ${e.internalError.message}`
+                            }
+                        );
+                        setPaginationInfo(
+                            {
+
+                                offset: 0,
+                                limit:  0,
+                                total:  0,
+                                count:  0
+                            }
+                        );
+                        setBeginNavigate(
+                            {
+                                start: false,
+                                currentPage: 0,
+                                offset: 0,
+                                textToFind: null
+                            }
+                        )
+                        setFormatedData(null);
+                    }
+
+                })
 
         },
         [ 
@@ -208,7 +316,12 @@ export function Paginate(props) {
 
         message = message.replace(/%e/, pageData.numberOfPages);
 
-        setNotificationMessage(message);
+        setNotificationMessage(
+            {
+                type:1,
+                message
+            }
+        );
 
         setBeginNavigate(
             {
@@ -260,9 +373,12 @@ export function Paginate(props) {
                 }
             >
 
-                <Notification>
+                <Notification 
+                    nType={ notificationMessage.type } 
+                    title= { notificationMessage.title }
+                >
 
-                    { notificationMessage }
+                    { notificationMessage.message }
 
                 </Notification>
 
