@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import Cards from '../cards';
-import { f_getKey } from '../../utils';
+import { f_getKey, useQuery } from '../../utils';
+import { useHistory } from 'react-router-dom';
 import { allHeroes, THUMBNAIL_PER_PAGE } from './../../service/api';
 import Notification, { notificationType } from '../notification';
 import { m_findHero } from '../../actions';
@@ -15,9 +16,9 @@ function formatPagination(marvel_res) {
     let i;
     let marvel_res_len = marvel_res.length - 1;
 
-    for (i = 0 ; i < 8 ; i++ ) {
+    for ( i = 0 ; i < THUMBNAIL_PER_PAGE ; i++ ) {
 
-        if (i <= marvel_res_len) {
+        if ( i <= marvel_res_len ) {
 
             tmp = {
 
@@ -47,20 +48,23 @@ function formatPagination(marvel_res) {
 
 }
 
-/*
-function teste(e) {
-    console.log("Teste");
-    console.log(e);
-}
-*/
-
 export function Paginate(props) {
+
+    let query = useQuery();
+    let history = useHistory();
 
     const [ formatedData, setFormatedData ] = useState(null);
     const [ paginationInfo, setPaginationInfo ] = useState(null);
     const [ stringSearchResult, setStringSearchResult ] = useState(null);
     const [ pageData, setPageData ] = useState(null);
     const [ notificationMessage, setNotificationMessage ] = useState(null);
+    const [ queries, setQueries ] = useState(
+        {
+            name: query.get('name'),
+            page: query.get('page'),
+        }
+    );
+
     /*
     // Improve in TypeScript version
      Notification message should be null or {
@@ -86,12 +90,28 @@ export function Paginate(props) {
     
     });*/
 
+    function getUrlQuery() {
+        return {
+            name: query.get('name'),
+            page: query.get('page')
+        }
+    }
+
     useEffect (
 
         () => {
 
+
             let info;
             let tmp;
+/*
+            function getUrlQuery() {
+                return {
+                    name: query.get('name'),
+                    page: query.get('page')
+                }
+            }
+            */
 
             function formatStringSearchResult() {
 
@@ -157,7 +177,7 @@ export function Paginate(props) {
             }
 
             if (beginNavigate.start) {
-
+//console.log(beginNavigate);
                 allHeroes(beginNavigate.offset, beginNavigate.textToFind).then((res) => {
 
                     setFormatedData(formatPagination(res.data.data.results))
@@ -169,15 +189,22 @@ export function Paginate(props) {
                         total: res.data.data.total,
                         count: res.data.data.count
     
-                    };
+                    }
       
                     setPaginationInfo(
                         info
                     );
 
-                    if (info.count)
+                    if (info.count) {
                         setNotificationMessage(null);
-                    else
+                        setQueries(
+                            {
+                                name: beginNavigate.textToFind,
+                                page: beginNavigate.currentPage
+                            }
+                        )
+
+                    } else
                         setNotificationMessage(
                             {
                                 type: notificationType.NOTF_ALERT,
@@ -238,7 +265,10 @@ export function Paginate(props) {
 
             if (paginationInfo)
                 setStringSearchResult(formatStringSearchResult());
-            else
+            else {
+
+                //console.log(getUrlQuery());
+
                 allHeroes(0).then((res) => {
                     if (!formatedData)
                         setFormatedData(formatPagination(res.data.data.results));
@@ -291,16 +321,29 @@ export function Paginate(props) {
                     }
 
                 })
+            }
+/*
+            let name_query = null, page_query=null;
+            tmp = getUrlQuery();
+
+            if (queries.name)
+                if (tmp.name!==queries.name)
+                    name_query=queries.name;
+            
+            if (queries.page)
+                if (tmp.page!==queries.page)
+                    page_query=queries.page;
+*/
 
         },
         [ 
             formatedData, 
             paginationInfo, 
             stringSearchResult, 
-            props.state.interface.pag_header_search_text,
             beginNavigate,
             notificationMessage,
             props,
+            queries
         ]
     
     )
@@ -318,7 +361,7 @@ export function Paginate(props) {
 
         setNotificationMessage(
             {
-                type:1,
+                type: notificationType.NOTF_INFO,
                 message
             }
         );
@@ -334,7 +377,7 @@ export function Paginate(props) {
     }
 
     function calculatePagination(pgInfo) {
-//THUMBNAIL_PER_PAGE
+
 /*
    {
 //Usar TypeScript no futuro
@@ -361,7 +404,13 @@ export function Paginate(props) {
         return calculated;
 
     }
-
+/* Teste
+console.log(queries)
+let x =getUrlQuery();
+if (queries.name!==x.name||queries.page!==x.page) {
+    history.push(`/?name=${queries.name}&page=${queries.page}`);
+}
+**/
     if (notificationMessage) {
         return (
             <div className="pagination-container"
@@ -455,4 +504,3 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paginate);
-

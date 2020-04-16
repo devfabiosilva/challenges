@@ -17,10 +17,8 @@ export async function allHeroes(offset, findHero=null) {
     let data;
 
     await api.get(param).then(
-        (res) => {
-            console.log(res)
-            data=res;
-        },
+
+        (res) => data=res,
         (err) => {
             data = {
                 err: err.request.status,
@@ -28,10 +26,9 @@ export async function allHeroes(offset, findHero=null) {
                 internalError: (err.request.responseText)?JSON.parse(err.request.responseText):"Unknown"
             }
         }
+
     )
 
-    return new Promise (
-        (resolve, reject) => (data.data)?resolve(data):reject(data)
-    );
+    return new Promise ((resolve, reject) => (data.data)?resolve(data):reject(data));
 
 }

@@ -6,6 +6,7 @@ import Paginate from '../../components/pagination';
 import { connect } from 'react-redux';
 import { checkApiKey } from '../../utils/secure';
 import { m_modifyLanguage, m_findHero } from '../../actions';
+import { useHistory } from 'react-router-dom';
 import { 
     L_PT_BR, 
     L_EN_US, 
@@ -16,6 +17,8 @@ import './style.css';
 export function Main(props) {
 
     const [ inputSearch, setInputSearch ] = useState('');
+
+    const history = useHistory();
 
     useEffect (
 
@@ -34,8 +37,10 @@ export function Main(props) {
         e.preventDefault();
         let textToFind=inputSearch.trim();
 
-        if (textToFind)
+        if (textToFind) {
+ //           history.push(`/?name=${encodeURIComponent(textToFind)}&page=0`);
             props.findMyHero(textToFind);
+        }
 
     }
 
@@ -44,7 +49,10 @@ export function Main(props) {
     }
 
     function onKeyUpEvt() {
+
         if (inputSearch==="") {
+
+            history.push('/');
             props.findMyHero("");
         }
     }

@@ -6,7 +6,8 @@ import {
     DivNotificationIcon, 
     DivNotificationTitle,
     ALERT_COLOR,
-    INFO_COLOR
+    INFO_COLOR,
+    ERROR_COLOR
 } from './styled';
 import { FiInfo, FiAlertTriangle, FiXCircle } from 'react-icons/fi';
 
@@ -24,7 +25,7 @@ function NotfIcon( { nAlert, nError } ) {
         return <FiAlertTriangle size={NOTF_ICON_SZ} color={ALERT_COLOR}/>
 
     if (nError)
-        return <FiXCircle size={NOTF_ICON_SZ} color="red"/>
+        return <FiXCircle size={NOTF_ICON_SZ} color={ERROR_COLOR}/>
 
     return <FiInfo size={NOTF_ICON_SZ} color={INFO_COLOR} />
 
@@ -52,7 +53,7 @@ export function Notification({ state, nAlert, nError, children, title, nType }) 
                         (nAlert)?
                         ALERT_COLOR:
                         (nError)?
-                        "red":
+                        ERROR_COLOR:
                         null
                     }
                 >

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 export const ALERT_COLOR = "#e8b006";//"#FFC107";
 export const INFO_COLOR = "#0099ff";
+export const ERROR_COLOR = "red";
 
 export const DivNotification = styled.div`
     /* background: magenta; */
