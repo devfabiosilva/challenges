@@ -17,7 +17,7 @@ export const LANG_PT_BR = {
     error_title: "Erro",
     alert_api_conf_title: "Configuração de API necessária",
     alert_api_conf: "Você precisa incluir sua chave API e sua chave privada em ./src/utils/secure.js nos campos 'MARVEL_API_KEY' (apiKey) para chave API e 'MARVEL_PRIVATE_KEY' (privKey) para a chave privada",
-    pag_header_search_text: "Resultado(s): Encotrado %d heróis [Página %e de %f]",
+    pag_header_search_text: "Resultado(s): Encontrado %d heróis [Página %e de %f]",
     loading_characters: "Carregando heróis... espere ...",
     loading_page: "Carregando página %d de %e"
 

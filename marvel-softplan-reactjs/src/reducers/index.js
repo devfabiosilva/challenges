@@ -1,7 +1,8 @@
 import { combineReducers, createStore} from 'redux';
 import { m_favorite } from './favorite';
 import { m_setLanguage } from './languageinterface';
+import { m_setFindHero } from './searchtools';
 
-const m_rootReducer = combineReducers({ m_favorite, m_setLanguage });
+const m_rootReducer = combineReducers({ m_favorite, m_setLanguage, m_setFindHero });
 
 export const store = createStore(m_rootReducer);

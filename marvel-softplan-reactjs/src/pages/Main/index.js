@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { FaLanguage } from 'react-icons/fa';
 import Notification from '../../components/notification';
 import Paginate from '../../components/pagination';
 import { connect } from 'react-redux';
 import { checkApiKey } from '../../utils/secure';
-import { m_modifyLanguage } from '../../actions';
+import { m_modifyLanguage, m_findHero } from '../../actions';
 import { 
     L_PT_BR, 
     L_EN_US, 
@@ -14,23 +14,44 @@ import {
 import './style.css';
 
 export function Main(props) {
-    useEffect (
-     () => {
-        let marvelLanguage = getMarvelLanguageFromLocalStorage();
 
-        if (marvelLanguage !== props.state.lang)
-            props.mainPageModifyLang(marvelLanguage);
-    }, [props]
+    const [ inputSearch, setInputSearch ] = useState('');
+
+    useEffect (
+
+        () => {
+            let marvelLanguage = getMarvelLanguageFromLocalStorage();
+
+            if (marvelLanguage !== props.state.lang)
+                props.mainPageModifyLang(marvelLanguage);
+
+        }, [props]
+
     )
+
+    function findHero(e) {
+
+        e.preventDefault();
+        let textToFind=inputSearch.trim();
+
+        if (textToFind)
+            props.findMyHero(textToFind);
+
+    }
+
+    function findHeroChange(e) {
+        setInputSearch(e.target.value);
+    }
+
     return (
         <div className="container">
             <div className="tools">
                 <div className="search-tools">
                     <form autoComplete="on" id="search">
-                        <input id="search-input" placeholder=
+                        <input id="search-input" onChange={findHeroChange} placeholder=
                             {props.state.interface.search_hero}
                         type="search" />
-                        <button className="fav-button">
+                        <button className="fav-button" onClick={findHero}>
                             <FiSearch size={18} color="#FFF" />
                         </button>
                     </form>
@@ -66,7 +87,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    mainPageModifyLang: (e) => dispatch(m_modifyLanguage(e))
+    mainPageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
+    findMyHero: (e) => dispatch(m_findHero(e))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

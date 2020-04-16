@@ -5,6 +5,7 @@ import Cards from '../cards';
 import { f_getKey } from '../../utils';
 import { allHeroes } from './../../service/api';
 import Notification from '../notification';
+import { m_findHero } from '../../actions';
 import './style.css';
 
 const THUMBNAIL_PER_PAGE = 8;
@@ -66,7 +67,8 @@ export function Paginate(props) {
         {
             start: false,
             currentPage: 0,
-            offset: 0
+            offset: 0,
+            textToFind: null
         }
     )
     /*{
@@ -88,7 +90,7 @@ export function Paginate(props) {
 
                 let str = null;
                 let pageDataTmp = null;
-        
+
                 if (paginationInfo) {
         
                     str = props.state.interface.pag_header_search_text.replace(/%d/g, paginationInfo.total);
@@ -106,12 +108,26 @@ export function Paginate(props) {
         
             }
 
+            if (props.whatFind) {
+
+                setBeginNavigate(
+                    {
+                        start: true,
+                        currentPage: 0,
+                        offset: 0,
+                        textToFind: props.whatFind
+                    }
+                );
+
+                props.findMyHero(null);
+
+            }
+
             if (beginNavigate.start) {
 
-                allHeroes(beginNavigate.offset).then((res) => {
+                allHeroes(beginNavigate.offset, beginNavigate.textToFind).then((res) => {
 
                     setFormatedData(formatPagination(res.data.data.results));
-
 
                     info = {
 
@@ -134,7 +150,8 @@ export function Paginate(props) {
                     {
                         start: false,
                         currentPage: beginNavigate.currentPage,
-                        offset: beginNavigate.offset
+                        offset: beginNavigate.offset,
+                        textToFind: beginNavigate.textToFind
                     }
                 )
 
@@ -148,7 +165,7 @@ export function Paginate(props) {
                     if (!formatedData)
                         setFormatedData(formatPagination(res.data.data.results));
 
-                    if (!paginationInfo) {
+//                    if (!paginationInfo) {
 
                         info = {
 
@@ -163,10 +180,10 @@ export function Paginate(props) {
                             info
                         );
 
-                    }
+//                    }
 
                 }, (e) => console.log(e))
-console.log("AA")
+
         },
         [ 
             formatedData, 
@@ -174,7 +191,8 @@ console.log("AA")
             stringSearchResult, 
             props.state.interface.pag_header_search_text,
             beginNavigate,
-            notificationMessage
+            notificationMessage,
+            props,
         ]
     
     )
@@ -182,7 +200,7 @@ console.log("AA")
     function startPageNavigation(page) {
 
         let message;
-        
+
         if (page.selected===beginNavigate.currentPage)
             return;
 
@@ -197,6 +215,7 @@ console.log("AA")
                 start: true,
                 currentPage: page.selected,
                 offset: page.selected*THUMBNAIL_PER_PAGE,
+                textToFind: beginNavigate.textToFind
             }
         )
     }
@@ -265,7 +284,7 @@ console.log("AA")
                         pageRangeDisplayed={6}
                         marginPagesDisplayed={1}
 
-                        initialPage={ beginNavigate.currentPage }
+                        forcePage={ beginNavigate.currentPage }
 
                         previousLabel={ props.state.interface.previous }
                         nextLabel={ props.state.interface.next }
@@ -311,8 +330,13 @@ console.log("AA")
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    state: state.m_setLanguage
+    state: state.m_setLanguage,
+    whatFind: state.m_setFindHero
 });
 
-export default connect(mapStateToProps)(Paginate);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    findMyHero: (e) => dispatch(m_findHero(e))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Paginate);
 
