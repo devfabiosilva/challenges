@@ -3,9 +3,10 @@ import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import Cards from '../cards';
 import { f_getKey, useQuery } from '../../utils';
+import { useHistory } from 'react-router-dom';
 import { allHeroes, THUMBNAIL_PER_PAGE } from './../../service/api';
 import Notification, { notificationType } from '../notification';
-import { m_findHero, m_query } from '../../actions';
+import { m_findHero } from '../../actions';
 import './style.css';
 
 function formatPagination(marvel_res) {
@@ -50,6 +51,7 @@ function formatPagination(marvel_res) {
 export function Paginate(props) {
 
     let query = useQuery();
+    let history = useHistory();
 
     const [ formatedData, setFormatedData ] = useState(null);
     const [ paginationInfo, setPaginationInfo ] = useState(null);
@@ -87,14 +89,14 @@ export function Paginate(props) {
         count: ''
     
     });*/
-/*
+
     function getUrlQuery() {
         return {
             name: query.get('name'),
             page: query.get('page')
         }
     }
-*/
+
     useEffect (
 
         () => {
@@ -320,12 +322,19 @@ export function Paginate(props) {
 
                 })
             }
+/*
+            let name_query = null, page_query=null;
+            tmp = getUrlQuery();
 
-            if (props.marvel_query_pagination.update_query) {
-                console.log("Gatilho");
-                console.log(props.marvel_query_pagination);
-                props.m_setCustomQuery(props.marvel_query_pagination);
-            }
+            if (queries.name)
+                if (tmp.name!==queries.name)
+                    name_query=queries.name;
+            
+            if (queries.page)
+                if (tmp.page!==queries.page)
+                    page_query=queries.page;
+*/
+
         },
         [ 
             formatedData, 
@@ -487,13 +496,11 @@ if (queries.name!==x.name||queries.page!==x.page) {
 
 const mapStateToProps = (state, ownProps) => ({
     state: state.m_setLanguage,
-    whatFind: state.m_setFindHero,
-    marvel_query_pagination: state.m_setQuery
+    whatFind: state.m_setFindHero
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    findMyHero: (e) => dispatch(m_findHero(e)),
-    m_setCustomQuery: (e) => dispatch(m_query(e))
+    findMyHero: (e) => dispatch(m_findHero(e))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paginate);

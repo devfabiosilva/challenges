@@ -5,71 +5,30 @@ import Notification from '../../components/notification';
 import Paginate from '../../components/pagination';
 import { connect } from 'react-redux';
 import { checkApiKey } from '../../utils/secure';
-import { m_modifyLanguage, m_findHero, m_query } from '../../actions';
-import { useQuery } from '../../utils';
+import { m_modifyLanguage, m_findHero } from '../../actions';
+import { useHistory } from 'react-router-dom';
 import { 
     L_PT_BR, 
     L_EN_US, 
     getMarvelLanguageFromLocalStorage,
 } from '../../utils/language';
 import './style.css';
-import { useHistory } from 'react-router-dom';
 
 export function Main(props) {
 
-    const history = useHistory();
-    const my_query = useQuery();
-
     const [ inputSearch, setInputSearch ] = useState('');
+
+    const history = useHistory();
 
     useEffect (
 
         () => {
-
             let marvelLanguage = getMarvelLanguageFromLocalStorage();
-            let findNameInQuery, findPageInQuery, nameTmp, pageTmp;
 
             if (marvelLanguage !== props.state.lang)
                 props.mainPageModifyLang(marvelLanguage);
 
-            if (props.marvel_query.update_query)
-                history.push(props.marvel_query.query);
-            else {
-
-                findNameInQuery = (my_query.get('name')!==null)?decodeURIComponent(my_query.get('name')):null;
-                findPageInQuery = (my_query.get('page')!==null)?decodeURIComponent(my_query.get('page')):null;
-
-                nameTmp = (props.marvel_query.name!==null)?decodeURIComponent(props.marvel_query.name):null;
-                pageTmp = (props.marvel_query.name!==null)?decodeURIComponent(props.marvel_query.page):null;
- 
-                if ((findNameInQuery!==nameTmp)||(findPageInQuery!==pageTmp)) {
-console.log("AQUI")
-console.log(findNameInQuery);
-console.log(nameTmp)
-console.log(findPageInQuery);
-console.log(pageTmp)
-console.log(findNameInQuery!==nameTmp);
-console.log(pageTmp!==findPageInQuery);
-
-                    props.m_setCustomQuery(
-                        {
-                            name: findNameInQuery,
-                            page: findPageInQuery
-                        }
-                    )
-
-                }
-
-            }
-        },
-        [
-
-            props,
-            props.marvel_query,
-            history,
-            my_query
-
-        ]
+        }, [props]
 
     )
 
@@ -79,16 +38,8 @@ console.log(pageTmp!==findPageInQuery);
         let textToFind=inputSearch.trim();
 
         if (textToFind) {
-
-             props.m_setCustomQuery(
-                {
-                    name: textToFind,
-                    page: 0,
-                }
-            );
-
+ //           history.push(`/?name=${encodeURIComponent(textToFind)}&page=0`);
             props.findMyHero(textToFind);
-
         }
 
     }
@@ -101,18 +52,8 @@ console.log(pageTmp!==findPageInQuery);
 
         if (inputSearch==="") {
 
-            if ((m_query.name)||(m_query.page!==null)) {
-
-                props.m_setCustomQuery(
-                    {
-                        name: null,
-                        page: null
-                    }
-                );
-
-            }
+            history.push('/');
             props.findMyHero("");
-
         }
     }
 
@@ -161,14 +102,12 @@ console.log(pageTmp!==findPageInQuery);
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    state: state.m_setLanguage,
-    marvel_query: state.m_setQuery
+    state: state.m_setLanguage
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     mainPageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
-    findMyHero: (e) => dispatch(m_findHero(e)),
-    m_setCustomQuery: (e) => dispatch(m_query(e))
+    findMyHero: (e) => dispatch(m_findHero(e))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

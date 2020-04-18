@@ -6,6 +6,7 @@ export const m_setLanguage = (state = {lang: L_PT_BR, interface: LANG_PT_BR}, ac
     switch (action.type) {
 
         case m_Actions.MODIFY_LANGUAGE:
+
             if (action.lang===L_PT_BR)
                 return { lang: L_PT_BR, interface: LANG_PT_BR };
             
