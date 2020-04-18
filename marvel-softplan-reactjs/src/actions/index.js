@@ -43,11 +43,12 @@ export function m_query(query) {
     name_query_exists = (query.name!==null);
 
     if (page_query_exists&&name_query_exists)
-        query_tmp = `/?name=${encodeURIComponent(query.name)}&page=${encodeURIComponent(query.page)}`
+        query_tmp = `/?name=${query.name}&page=${query.page}`
+        //query_tmp = `/?name=${encodeURIComponent(query.name)}&page=${encodeURIComponent(query.page)}`
     else if (name_query_exists)
-        query_tmp = `/?name=${encodeURIComponent(query.name)}`
+        query_tmp = `/?name=${query.name}`
     else if (page_query_exists)
-        query_tmp = `/?page=${encodeURIComponent(query.page)}`
+        query_tmp = `/?page=${query.page}`
     else
         query_tmp = "/"
 

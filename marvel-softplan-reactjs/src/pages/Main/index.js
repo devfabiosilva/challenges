@@ -32,33 +32,27 @@ export function Main(props) {
             if (marvelLanguage !== props.state.lang)
                 props.mainPageModifyLang(marvelLanguage);
 
-            if (props.marvel_query.update_query)
-                history.push(props.marvel_query.query);
-            else {
+            if (!checkApiKey())
+                if (props.marvel_query.update_query)
+                    history.push(props.marvel_query.query);
+                else {
 
-                findNameInQuery = (my_query.get('name')!==null)?decodeURIComponent(my_query.get('name')):null;
-                findPageInQuery = (my_query.get('page')!==null)?decodeURIComponent(my_query.get('page')):null;
+                    findNameInQuery = (my_query.get('name')!==null)?decodeURIComponent(my_query.get('name')):null;
+                    findPageInQuery = (my_query.get('page')!==null)?decodeURIComponent(my_query.get('page')):null;
 
-                nameTmp = (props.marvel_query.name!==null)?decodeURIComponent(props.marvel_query.name):null;
-                pageTmp = (props.marvel_query.name!==null)?decodeURIComponent(props.marvel_query.page):null;
- 
-                if ((findNameInQuery!==nameTmp)||(findPageInQuery!==pageTmp)) {
-console.log("AQUI")
-console.log(findNameInQuery);
-console.log(nameTmp)
-console.log(findPageInQuery);
-console.log(pageTmp)
-console.log(findNameInQuery!==nameTmp);
-console.log(pageTmp!==findPageInQuery);
+                    nameTmp = props.marvel_query.name;
+                    pageTmp = props.marvel_query.page;
+    
+                    if ((findNameInQuery!==nameTmp)||(findPageInQuery!==pageTmp)) {
 
-                    props.m_setCustomQuery(
-                        {
-                            name: findNameInQuery,
-                            page: findPageInQuery
-                        }
-                    )
+                        props.m_setCustomQuery(
+                            {
+                                name: findNameInQuery,
+                                page: findPageInQuery
+                            }
+                        )
 
-                }
+                    }
 
             }
         },

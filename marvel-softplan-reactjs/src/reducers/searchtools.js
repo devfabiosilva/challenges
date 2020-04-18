@@ -24,13 +24,12 @@ const MARVEL_INITIAL_STATE_QUERY = {
 
 export function m_setQuery(state = MARVEL_INITIAL_STATE_QUERY, action) {
 
-    let new_state;
 
     switch (action.type) {
 
         case m_Actions.SET_QUERY:
 
-            new_state = {
+            return {
 
                 update_query: (state.query!==action.query.query),
                 name: action.query.name,
@@ -38,8 +37,6 @@ export function m_setQuery(state = MARVEL_INITIAL_STATE_QUERY, action) {
                 query: action.query.query
 
             }
-
-            return new_state;
 
         default:
             return state;

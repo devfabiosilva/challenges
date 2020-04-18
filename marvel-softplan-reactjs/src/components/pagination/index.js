@@ -87,14 +87,7 @@ export function Paginate(props) {
         count: ''
     
     });*/
-/*
-    function getUrlQuery() {
-        return {
-            name: query.get('name'),
-            page: query.get('page')
-        }
-    }
-*/
+
     useEffect (
 
         () => {
@@ -102,14 +95,6 @@ export function Paginate(props) {
 
             let info;
             let tmp;
-/*
-            function getUrlQuery() {
-                return {
-                    name: query.get('name'),
-                    page: query.get('page')
-                }
-            }
-            */
 
             function formatStringSearchResult() {
 
@@ -363,6 +348,13 @@ export function Paginate(props) {
                 currentPage: page.selected,
                 offset: page.selected*THUMBNAIL_PER_PAGE,
                 textToFind: beginNavigate.textToFind
+            }
+        )
+
+        props.m_setCustomQuery(
+            {
+                name: props.marvel_query_pagination.name,
+                page: page.selected
             }
         )
     }
