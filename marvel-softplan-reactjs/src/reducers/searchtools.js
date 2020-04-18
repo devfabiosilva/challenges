@@ -1,5 +1,6 @@
 import { m_Actions } from '../actions';
-
+// Tirar no futuro
+/*
 export function m_setFindHero(state = null, action) {
 
     switch (action.type) {
@@ -13,7 +14,7 @@ export function m_setFindHero(state = null, action) {
     }
 
 }
-
+*/
 const MARVEL_INITIAL_STATE_QUERY = {
     update_query: false,
     name: null,

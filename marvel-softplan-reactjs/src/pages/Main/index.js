@@ -5,7 +5,7 @@ import Notification from '../../components/notification';
 import Paginate from '../../components/pagination';
 import { connect } from 'react-redux';
 import { checkApiKey } from '../../utils/secure';
-import { m_modifyLanguage, m_findHero, m_query } from '../../actions';
+import { m_modifyLanguage, /* m_findHero, */ m_query } from '../../actions';
 import { useQuery } from '../../utils';
 import { 
     L_PT_BR, 
@@ -52,7 +52,26 @@ export function Main(props) {
                             }
                         )
 
+                    } else if (pageTmp === null) {
+
+                        props.m_setCustomQuery(
+                            {
+                                name: nameTmp,
+                                page: 1
+                            }
+                        )
+
                     }
+                    /*else if (nameTmp === null) {
+
+                        props.m_setCustomQuery(
+                            {
+                                name: "",
+                                page: null
+                            }
+                        )
+
+                    }*/
 
             }
         },
@@ -77,11 +96,11 @@ export function Main(props) {
              props.m_setCustomQuery(
                 {
                     name: textToFind,
-                    page: 0,
+                    page: 1,
                 }
             );
 
-            props.findMyHero(textToFind);
+            //props.findMyHero(textToFind);
 
         }
 
@@ -100,12 +119,12 @@ export function Main(props) {
                 props.m_setCustomQuery(
                     {
                         name: null,
-                        page: null
+                        page: 1
                     }
                 );
 
             }
-            props.findMyHero("");
+            //props.findMyHero("");
 
         }
     }
@@ -143,8 +162,7 @@ export function Main(props) {
             <div className="heroes-page">
                 {
                     (checkApiKey())?
-                        <Notification nAlert title={ props.state.interface.alert_api_conf_title }
-                        >
+                        <Notification nAlert title={ props.state.interface.alert_api_conf_title } >
                             { props.state.interface.alert_api_conf }
                         </Notification>
                     :<Paginate />
@@ -161,7 +179,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     mainPageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
-    findMyHero: (e) => dispatch(m_findHero(e)),
+    //findMyHero: (e) => dispatch(m_findHero(e)),
     m_setCustomQuery: (e) => dispatch(m_query(e))
 });
 
