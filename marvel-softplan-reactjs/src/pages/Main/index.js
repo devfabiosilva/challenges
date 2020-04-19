@@ -16,6 +16,7 @@ import {
 } from '../../utils/language';
 import './style.css';
 import { useHistory } from 'react-router-dom';
+import HeroViewer from '../../components/heroviewer'
 
 export function Main(props) {
 
@@ -120,6 +121,7 @@ export function Main(props) {
 
     return (
         <div className="container">
+            <HeroViewer />
             <div className="tools">
                 <div className="search-tools">
                     <form autoComplete="on" id="search">
