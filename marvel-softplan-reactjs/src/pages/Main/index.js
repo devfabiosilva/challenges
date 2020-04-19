@@ -5,12 +5,14 @@ import Notification from '../../components/notification';
 import Paginate from '../../components/pagination';
 import { connect } from 'react-redux';
 import { checkApiKey } from '../../utils/secure';
-import { m_modifyLanguage, /* m_findHero, */ m_query } from '../../actions';
+import { m_modifyLanguage, m_query } from '../../actions';
 import { useQuery } from '../../utils';
-import { 
+import {
+
     L_PT_BR, 
     L_EN_US, 
     getMarvelLanguageFromLocalStorage,
+
 } from '../../utils/language';
 import './style.css';
 import { useHistory } from 'react-router-dom';
@@ -62,16 +64,6 @@ export function Main(props) {
                         )
 
                     }
-                    /*else if (nameTmp === null) {
-
-                        props.m_setCustomQuery(
-                            {
-                                name: "",
-                                page: null
-                            }
-                        )
-
-                    }*/
 
             }
         },
@@ -100,8 +92,6 @@ export function Main(props) {
                 }
             );
 
-            //props.findMyHero(textToFind);
-
         }
 
     }
@@ -124,7 +114,6 @@ export function Main(props) {
                 );
 
             }
-            //props.findMyHero("");
 
         }
     }
@@ -179,7 +168,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     mainPageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
-    //findMyHero: (e) => dispatch(m_findHero(e)),
     m_setCustomQuery: (e) => dispatch(m_query(e))
 });
 

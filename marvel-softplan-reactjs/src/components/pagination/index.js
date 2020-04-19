@@ -3,9 +3,14 @@ import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import Cards from '../cards';
 import { f_getKey } from '../../utils';
-import { allHeroes, THUMBNAIL_PER_PAGE } from './../../service/api';
+import { 
+
+    allHeroes,
+    THUMBNAIL_PER_PAGE
+
+} from './../../service/api';
 import Notification, { notificationType } from '../notification';
-import { /* m_findHero, */ m_query } from '../../actions';
+import { m_query } from '../../actions';
 import './style.css';
 
 function formatPagination(marvel_res) {
@@ -49,19 +54,11 @@ function formatPagination(marvel_res) {
 
 export function Paginate(props) {
 
-    //let query = useQuery();
-
     const [ formatedData, setFormatedData ] = useState(null);
     const [ paginationInfo, setPaginationInfo ] = useState(null);
     const [ stringSearchResult, setStringSearchResult ] = useState(null);
     const [ pageData, setPageData ] = useState(null);
     const [ notificationMessage, setNotificationMessage ] = useState(null);
-    /*const [ queries, setQueries ] = useState(
-        {
-            name: null,//query.get('name'),
-            page: null//query.get('page'),
-        }
-    ); */
 
     /*
     // Improve in TypeScript version
@@ -117,52 +114,8 @@ export function Paginate(props) {
                 return str;
         
             }
-/*
-            if (props.whatFind) {
-
-                setBeginNavigate(
-                    {
-                        start: true,
-                        currentPage: 0,
-                        offset: 0,
-                        textToFind: props.whatFind
-                    }
-                );
-
-                props.findMyHero(null);
-
-                setNotificationMessage(
-                    {
-                        type: notificationType.NOTF_INFO,
-                        title: "",
-                        message: props.state.interface.finding.replace(/%d/, props.whatFind)
-                    }
-                );
-
-            } else if (beginNavigate.textToFind) {
-
-                if (props.whatFind==="") {
-
-                    setNotificationMessage(null);
-                    setPaginationInfo(null);
-                    setBeginNavigate(
-                        {
-                            start: false,
-                            currentPage: 0,
-                            offset: 0,
-                            textToFind: null
-                        }
-                    )
-                    setFormatedData(null);
-
-                }
-
-            }
-*/
 
             if (props.marvel_query_pagination.update_query) {
-                console.log("Gatilho");
-                console.log(props.marvel_query_pagination);
                 
                 if (typeof( tmp = props.marvel_query_pagination.page ) === 'number')
                     tmp--;
@@ -179,16 +132,16 @@ export function Paginate(props) {
                         start: true,
                         currentPage: tmp,
                         offset: tmp*THUMBNAIL_PER_PAGE,
-                        textToFind: props.marvel_query_pagination.name//beginNavigate.textToFind
+                        textToFind: props.marvel_query_pagination.name
                     }
                 );
-                console.log(beginNavigate)
+
                 props.m_setCustomQuery(props.marvel_query_pagination);
 
             }
 
             if (beginNavigate.start) {
-//console.log(beginNavigate);
+
                 allHeroes(beginNavigate.offset, beginNavigate.textToFind).then((res) => {
 
                     setFormatedData(formatPagination(res.data.data.results))
@@ -206,20 +159,7 @@ export function Paginate(props) {
                         info
                     );
 
-                    if (info.count) {
-                        setNotificationMessage(null);
-                        /*
-                        setQueries(
-                            {
-                                name: beginNavigate.textToFind,
-                                page: beginNavigate.currentPage
-                            }
-                        )
-                        */
-
-                    } else
-                    //if (!info.count)
-                        setNotificationMessage(
+                    (info.count)?setNotificationMessage(null):setNotificationMessage(
                             {
                                 type: notificationType.NOTF_ALERT,
                                 title: props.state.interface.err_not_found_title,
@@ -279,64 +219,6 @@ export function Paginate(props) {
 
             if (paginationInfo)
                 setStringSearchResult(formatStringSearchResult());
-/*
-            else {
-                //console.log(getUrlQuery());
-
-                allHeroes(0).then((res) => {
-                    if (!formatedData)
-                        setFormatedData(formatPagination(res.data.data.results));
-                        setPaginationInfo(
-                            {
-
-                                offset: res.data.data.offset,
-                                limit: res.data.data.limit,
-                                total: res.data.data.total,
-                                count: res.data.data.count
-        
-                            }
-                        );
-
-                }, (e) => {
-
-                    if (!notificationMessage) {
-
-                        tmp=props.state.interface.err_marvel_server_error_msg.replace(
-                            /%d/,
-                            e.internalError.code
-                        );
-
-                        setNotificationMessage(
-                            {
-                                type: notificationType.NOTF_ERROR,
-                                title: `${e.err} (${(e.errTxt)})`,
-                                message: tmp.replace(/%e/, e.internalError.message)
-                                //message: `Erro no servidor Marvel "${e.internalError.code}" com a mensagem: ${e.internalError.message}`
-                            }
-                        );
-                        setPaginationInfo(
-                            {
-
-                                offset: 0,
-                                limit:  0,
-                                total:  0,
-                                count:  0
-                            }
-                        );
-                        setBeginNavigate(
-                            {
-                                start: false,
-                                currentPage: 0,
-                                offset: 0,
-                                textToFind: null
-                            }
-                        )
-                        setFormatedData(null);
-                    }
-
-                })
-            }
-*/
 
         },
         [ 
@@ -367,15 +249,6 @@ export function Paginate(props) {
                 message
             }
         );
-/*
-        setBeginNavigate(
-            {
-                start: true,
-                currentPage: page.selected,
-                offset: page.selected*THUMBNAIL_PER_PAGE,
-                textToFind: beginNavigate.textToFind
-            }
-        ) */
 
         props.m_setCustomQuery(
             {
@@ -413,13 +286,7 @@ export function Paginate(props) {
         return calculated;
 
     }
-/* Teste
-console.log(queries)
-let x =getUrlQuery();
-if (queries.name!==x.name||queries.page!==x.page) {
-    history.push(`/?name=${queries.name}&page=${queries.page}`);
-}
-**/
+
     if (notificationMessage) {
         return (
             <div className="pagination-container"
@@ -505,12 +372,10 @@ if (queries.name!==x.name||queries.page!==x.page) {
 
 const mapStateToProps = (state, ownProps) => ({
     state: state.m_setLanguage,
-    //whatFind: state.m_setFindHero,
     marvel_query_pagination: state.m_setQuery
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    //: (e) => dispatch(m_findHero(e)),
     m_setCustomQuery: (e) => dispatch(m_query(e))
 });
 

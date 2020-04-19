@@ -20,11 +20,15 @@ export async function allHeroes(offset, findHero=null) {
 
         (res) => data=res,
         (err) => {
+
             data = {
+
                 err: err.request.status,
                 errTxt: err.request.statusText,
                 internalError: (err.request.responseText)?JSON.parse(err.request.responseText):"Unknown"
+
             }
+            
         }
 
     )

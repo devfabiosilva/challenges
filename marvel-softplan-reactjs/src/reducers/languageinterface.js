@@ -1,5 +1,12 @@
 import { m_Actions } from '../actions';
-import { LANG_PT_BR, L_PT_BR, LANG_EN_US, L_EN_US } from '../utils/language';
+import {
+
+    LANG_PT_BR,
+    L_PT_BR,
+    LANG_EN_US,
+    L_EN_US
+
+} from '../utils/language';
 
 export const m_setLanguage = (state = {lang: L_PT_BR, interface: LANG_PT_BR}, action) => {
 

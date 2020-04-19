@@ -31,7 +31,8 @@ export function Cards({ formatedData }) {
                             );
                         } else {
                             return (
-                                <div key={val.id} className="card-container"></div>                                );
+                                <div key={val.id} className="card-container"></div>
+                            );
                         }
                     else
                         return null

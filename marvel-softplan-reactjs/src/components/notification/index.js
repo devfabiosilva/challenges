@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
+    
     DivNotification, 
     DivNotificationContainer, 
     DivNotificationIcon, 
@@ -8,6 +9,7 @@ import {
     ALERT_COLOR,
     INFO_COLOR,
     ERROR_COLOR
+
 } from './styled';
 import { FiInfo, FiAlertTriangle, FiXCircle } from 'react-icons/fi';
 
