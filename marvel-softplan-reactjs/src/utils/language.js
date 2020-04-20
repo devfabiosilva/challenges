@@ -28,7 +28,10 @@ export const LANG_PT_BR = {
     close: "Fechar",
     add_to_fav: "Adicionar aos favoritos",
     fav_already_exist: "Este herói já foi adicionado aos favoritos",
-    fav_added: "Herói adicionado aos favoritos"
+    fav_added: "Herói adicionado aos favoritos",
+    fav_list_empty: "Lista de heróis favoritos vazia",
+    empty_list_msg: "A lista de heróis está vazia. Adiciona para visualizar ou editar/excluir",
+    empty_list_msg_title: "Lista de heróis vazia"
 
 }
 
@@ -58,7 +61,10 @@ export const LANG_EN_US = {
     close: "Close",
     add_to_fav: "Add to favorites",
     fav_already_exist: "This hero is already added to favorites",
-    fav_added: "Hero added to favorites"
+    fav_added: "Hero added to favorites",
+    fav_list_empty: "Empty favorite hero list",
+    empty_list_msg: "Hero list is empty. Please add at least one hero to edit/delete",
+    empty_list_msg_title: "Empty hero list"
 
 }
 

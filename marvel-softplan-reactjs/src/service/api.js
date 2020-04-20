@@ -9,6 +9,8 @@ const api = axios.create({
 
 export const THUMBNAIL_PER_PAGE = 8;
 
+// https://developer.marvel.com/documentation/authorization
+
 export async function allHeroes(offset, findHero=null) {
 
     const { ts, apiKey, privKey } = credentials;

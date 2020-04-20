@@ -79,6 +79,10 @@ export function Main(props) {
 
     )
 
+    function openSavedFavorite() {
+        (props.savedFavorites.length)?props.history.push('/fav'):alert(props.state.interface.fav_list_empty);
+    }
+
     function findHero(e) {
 
         e.preventDefault();
@@ -139,7 +143,7 @@ export function Main(props) {
                     </form>
                 </div>
                 <div className="list-favorites">
-                    <button className="saved-list-btn">
+                    <button className="saved-list-btn" onClick={openSavedFavorite}>
                         { props.state.interface.goto_saved_list }
                     </button>
                     <button className="lang-btn"
@@ -167,6 +171,7 @@ const mapStateToProps = (state, ownProps) => ({
     state: state.m_setLanguage,
     marvel_query: state.m_setQuery,
     heroDetail: state.m_setOpenViewerDetail,
+    savedFavorites: state.m_favorite
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
