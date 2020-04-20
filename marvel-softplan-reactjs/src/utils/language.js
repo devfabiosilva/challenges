@@ -31,7 +31,8 @@ export const LANG_PT_BR = {
     fav_added: "Herói adicionado aos favoritos",
     fav_list_empty: "Lista de heróis favoritos vazia",
     empty_list_msg: "A lista de heróis está vazia. Adiciona para visualizar ou editar/excluir",
-    empty_list_msg_title: "Lista de heróis vazia"
+    empty_list_msg_title: "Lista de heróis vazia",
+    favorite_hero_found: "Você tem %d herói(s) na lista"
 
 }
 
@@ -64,7 +65,8 @@ export const LANG_EN_US = {
     fav_added: "Hero added to favorites",
     fav_list_empty: "Empty favorite hero list",
     empty_list_msg: "Hero list is empty. Please add at least one hero to edit/delete",
-    empty_list_msg_title: "Empty hero list"
+    empty_list_msg_title: "Empty hero list",
+    favorite_hero_found: "You have %d hero(es)"
 
 }
 

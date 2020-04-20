@@ -135,8 +135,9 @@ export function Main(props) {
                             onChange={ findHeroChange }
                             placeholder={ props.state.interface.search_hero }
                             onKeyUp={ onKeyUpEvt }
+                            type="search"
 
-                        type="search" />
+                        />
                         <button className="fav-button" onClick={findHero}>
                             <FiSearch size={18} color="#FFF" />
                         </button>

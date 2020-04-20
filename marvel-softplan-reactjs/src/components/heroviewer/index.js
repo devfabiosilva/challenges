@@ -1,13 +1,12 @@
 import React from 'react';
-import './style.css';
-
 import { connect } from 'react-redux';
 import { m_openViewerHeroDetail } from '../../actions';
 import { m_favoriteAlreadyExists } from '../../reducers/favorite';
 import { m_addToFavorite } from '../../actions';
+import './style.css';
 
 export function HeroViewer( props ) {
-//export function m_favoriteAlreadyExists(data, saved_data) {
+
     function addToFav(data) {
 
         let txtmsg;

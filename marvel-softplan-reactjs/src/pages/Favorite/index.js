@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Notification from '../../components/notification';
-import { m_modifyLanguage } from '../../actions';
+import { m_modifyLanguage, m_deleteFromFavorite } from '../../actions';
 import { getMarvelLanguageFromLocalStorage } from '../../utils/language';
-//import { } from '../../actions';
+import { f_getKey } from '../../utils';
 import './style.css';
 
 export function Favorite(props) {
@@ -25,31 +25,52 @@ export function Favorite(props) {
         return (
             <div className="fav-container">
                 <div className="fav-header">
-                    Cabeçalho
+                    { props.state.interface.favorite_hero_found.replace(/%d/, props.favoriteLists.length) }
                 </div>
                 <div className="fav-list">
                     <div className="fav-list-container">
 
-                        <div className="fav-list-item-container">
-                            <div className="fav-img-container">
-                                <img className="fav-img" alt="img-fav" />
-                            </div>
-                            <div className="fav-item-name">Lista1</div>
-                            <div className="fav-item-btn-container">
-                                <button>Botao1</button>
-                                <button>Excluir1</button>
-                            </div>
-                        </div>
-                        <div className="fav-list-item-container">
-                            <div className="fav-img-container">
-                                <img className="fav-img" alt="img-fav" />
-                            </div>
-                            <div className="fav-item-name">Lista1</div>
-                            <div className="fav-item-btn-container">
-                                <button>Botao1</button>
-                                <button>Excluir1</button>
-                            </div>
-                        </div>
+                        {
+                            props.favoriteLists.map((val) => (
+                                <div 
+                                    key={f_getKey()}
+                                    className="fav-list-item-container"
+                                >
+                                    <div
+                                        key={f_getKey()}
+                                        className="fav-img-container"
+                                    >
+                                        <img
+                                            key={f_getKey()}
+                                            className="fav-img" alt="img-fav"
+                                        />
+                                    </div>
+                                    <div 
+                                        key={f_getKey()}
+                                        className="fav-item-name"
+                                    >
+                                        { val.name }
+                                    </div>
+                                    <div
+                                        key={f_getKey()}
+                                        className="fav-item-btn-container"
+                                    >
+                                        <button
+                                            key={f_getKey()}
+                                        >
+                                            Botao1
+                                        </button>
+                                        <button
+                                            key={val.id}
+                                            onClick={() => props.removeFromList(val.id)}
+                                        >
+                                            Excluir1
+                                        </button>
+                                    </div>
+                                </div>
+                            ))
+                        }
+
                     </div>
                 </div>
                 <div className="fav-footer">
@@ -90,6 +111,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
     favoritePageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
+    removeFromList: (e) => dispatch(m_deleteFromFavorite(e))
 
 });
 

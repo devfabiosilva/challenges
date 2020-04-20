@@ -20,9 +20,9 @@ export const m_favorite = (state = [], action) => {
                 ...state, action.data
             ];
 
-        case m_Actions.REMOVE_FROM_LIST:
+        case m_Actions.REMOVE_FROM_FAVORITE:
             return state.filter((index) => {
-                return index.id !== action.index
+                return index.id !== action.id
             });
 
         default:
