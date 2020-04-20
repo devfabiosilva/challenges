@@ -23,7 +23,12 @@ export const LANG_PT_BR = {
     finding: 'Encontrando "%d" ...',
     err_search_not_found: 'Herói não encontrado: "%d"',
     err_not_found_title: "Não encontrado",
-    err_marvel_server_error_msg: "Erro no servidor Marvel '%d' com a mensagem %e"
+    err_marvel_server_error_msg: "Erro no servidor Marvel '%d' com a mensagem %e",
+    no_descr: "Nenhuma descrição",
+    close: "Fechar",
+    add_to_fav: "Adicionar aos favoritos",
+    fav_already_exist: "Este herói já foi adicionado aos favoritos",
+    fav_added: "Herói adicionado aos favoritos"
 
 }
 
@@ -48,7 +53,12 @@ export const LANG_EN_US = {
     finding: 'Finding "%d"...',
     err_search_not_found: 'Hero NOT FOUND: "%d"',
     err_not_found_title: "NOT FOUND",
-    err_marvel_server_error_msg: "Marvel server error '%d' with message %e"
+    err_marvel_server_error_msg: "Marvel server error '%d' with message %e",
+    no_descr: "No description",
+    close: "Close",
+    add_to_fav: "Add to favorites",
+    fav_already_exist: "This hero is already added to favorites",
+    fav_added: "Hero added to favorites"
 
 }
 

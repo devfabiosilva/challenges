@@ -1,32 +1,36 @@
 import { setMarvelLanguageToLocalStorage } from '../utils/language';
 
 const M_NONE = 1;
-const ADD_TO_LIST = 2;
+//const ADD_TO_LIST = 2;
 const REMOVE_FROM_LIST = 3;
 const MODIFY_LANGUAGE = 4;
 const OPEN_VIEWER_DETAIL = 5;
 const SET_QUERY = 6;
+const ADD_TO_FAVORITE = 7;
 
 export const m_Actions = {
     
     M_NONE,
-    ADD_TO_LIST,
+//    ADD_TO_LIST,
     REMOVE_FROM_LIST,
     MODIFY_LANGUAGE,
     OPEN_VIEWER_DETAIL,
-    SET_QUERY
+    SET_QUERY,
+    ADD_TO_FAVORITE
 
 }
 
-export function m_addToList(text) {
-    if (text.trim())
-        return { type: ADD_TO_LIST, text }
-
-    return {type: M_NONE};
-}
-  
 export function m_removeFromList(index) {
     return { type: REMOVE_FROM_LIST, index }
+}
+
+export function m_addToFavorite(data) {
+
+    if (data)
+        return { type: ADD_TO_FAVORITE, data }
+
+    return {type: M_NONE};
+
 }
 
 export function m_modifyLanguage(lang) {

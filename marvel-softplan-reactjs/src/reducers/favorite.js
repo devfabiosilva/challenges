@@ -1,16 +1,23 @@
 import { m_Actions } from '../actions';
-import { f_getKey } from '../utils';
+
+export function m_favoriteAlreadyExists(data, saved_data) {
+
+    if (saved_data.filter( (fav) => {
+        return (fav.id===data.id)
+    }).length) return true;
+
+    return false;
+
+}
 
 export const m_favorite = (state = [], action) => {
 
     switch (action.type) {
 
-        case m_Actions.ADD_TO_LIST:
+        case m_Actions.ADD_TO_FAVORITE:
+
             return [
-                ...state, {
-                    id: f_getKey(),
-                    text: action.text,
-                }
+                ...state, action.data
             ];
 
         case m_Actions.REMOVE_FROM_LIST:

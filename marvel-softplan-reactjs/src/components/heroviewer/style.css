@@ -17,15 +17,15 @@
 .hero-viewer-window {
 
     border-radius: 4px;
-    background-color: tomato;
-    margin: auto, auto;
-    width: 890px;
-    height: 550px;
+    background-color: #f0f0f5;
+    width: 711px;
+    height: 440px;
 
 }
 
 .viewer-img {
 
+    display: flex;
     margin: auto auto;
     width: 90%;
     height: 70%;
@@ -35,15 +35,34 @@
 .hero-viewer-desc {
 
     margin: auto auto;
+    text-align: center;
+    font-style: italic;
+    font-size: 22px;
     width: 90%;
-    height: 20%;
+    height: 15%;
 
 }
 
 .hero-viewer-action {
-
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto;
     margin: auto auto;
-    width: 90%;
+    width: 95%;
     height: 10%;
     
+}
+
+.img-detail {
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 4px;
+    margin: auto;
+    /*width: 340px;*/
+    max-width:300px;
+    max-height:90%;
+    width: auto;
+    height: auto;
 }

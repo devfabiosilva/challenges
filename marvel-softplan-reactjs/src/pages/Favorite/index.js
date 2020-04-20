@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { m_addToList, m_removeFromList } from '../../actions';
+//import { connect } from 'react-redux';
+//import { } from '../../actions';
 
-export function Favorite() {
+export default function Favorite() {
     return (
         <div className="container">
             <div className="header">
@@ -14,8 +14,9 @@ export function Favorite() {
         </div>
     );
 }
+/*
 const mapStateToProps = (state, ownProps) => ({
-    state: state.m_favorite
+
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -24,3 +25,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favorite);
+*/

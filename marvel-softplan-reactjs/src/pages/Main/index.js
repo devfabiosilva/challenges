@@ -166,7 +166,7 @@ export function Main(props) {
 const mapStateToProps = (state, ownProps) => ({
     state: state.m_setLanguage,
     marvel_query: state.m_setQuery,
-    heroDetail: state.m_setOpenViewerDetail
+    heroDetail: state.m_setOpenViewerDetail,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
