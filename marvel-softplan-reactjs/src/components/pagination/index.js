@@ -28,7 +28,8 @@ function formatPagination(marvel_res) {
 
                 id: marvel_res[i].id,
                 name: marvel_res[i].name,
-                thumb: `${marvel_res[i].thumbnail.path}.${marvel_res[i].thumbnail.extension}`
+                thumb: `${marvel_res[i].thumbnail.path}.${marvel_res[i].thumbnail.extension}`,
+                series: marvel_res[i].series
 
             }
 
@@ -38,7 +39,8 @@ function formatPagination(marvel_res) {
 
                 id: f_getKey(),
                 name: "",
-                thumb: ""
+                thumb: "",
+                series: ""
 
             }
 

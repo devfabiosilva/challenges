@@ -1,6 +1,5 @@
 .hero-viewer-container {
-
-    /* display: none; */
+ 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +16,6 @@
 
 .hero-viewer-window {
 
-    display: flex;
     border-radius: 4px;
     background-color: tomato;
     margin: auto, auto;
@@ -30,7 +28,7 @@
 
     margin: auto auto;
     width: 90%;
-    height: 50%;
+    height: 70%;
 
 }
 

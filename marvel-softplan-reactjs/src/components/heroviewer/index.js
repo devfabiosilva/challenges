@@ -1,12 +1,14 @@
 import React from 'react';
 import './style.css';
 
-// import { Container } from './styles';
+import { connect } from 'react-redux';
+import { m_openViewerHeroDetail } from '../../actions';
 
-export default function HeroViewer() {
+export function HeroViewer( props ) {
+
   return (
 
-    <div className="hero-viewer-container">
+    <div className="hero-viewer-container" style={{display: (props.heroDetail)?'flex':'none'}}>
         <div className="hero-viewer-window">
             <div className="viewer-img">
                 Imagem
@@ -15,12 +17,22 @@ export default function HeroViewer() {
                 Descrição
             </div>
             <div className="hero-viewer-action">
-                <button>Editar</button>
                 <button>Adicionar aos favoritos</button>
-                <button>Fechar</button>
+                <button onClick={ props.m_closeViewPage }>Fechar</button>
             </div>
         </div>
     </div>
     
   );
 }
+
+const mapStateToProps = (state, ownProps) => ({
+    state: state.m_setLanguage,
+    //heroDataDetail: state.m_setOpenViewerDetail
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    m_closeViewPage: () => dispatch(m_openViewerHeroDetail(null))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeroViewer);

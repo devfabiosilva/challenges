@@ -16,9 +16,11 @@ import { FiInfo, FiAlertTriangle, FiXCircle } from 'react-icons/fi';
 const NOTF_ICON_SZ = 120;
 
 export const notificationType = {
+
     NOTF_INFO: 1,
     NOTF_ALERT: 2,
     NOTF_ERROR: 3
+    
 }
 
 function NotfIcon( { nAlert, nError } ) {

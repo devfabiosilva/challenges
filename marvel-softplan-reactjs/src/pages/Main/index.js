@@ -16,7 +16,7 @@ import {
 } from '../../utils/language';
 import './style.css';
 import { useHistory } from 'react-router-dom';
-import HeroViewer from '../../components/heroviewer'
+import HeroViewer from '../../components/heroviewer';
 
 export function Main(props) {
 
@@ -121,7 +121,7 @@ export function Main(props) {
 
     return (
         <div className="container">
-            <HeroViewer />
+            <HeroViewer heroDetail={props.heroDetail} />
             <div className="tools">
                 <div className="search-tools">
                     <form autoComplete="on" id="search">
@@ -165,12 +165,14 @@ export function Main(props) {
 
 const mapStateToProps = (state, ownProps) => ({
     state: state.m_setLanguage,
-    marvel_query: state.m_setQuery
+    marvel_query: state.m_setQuery,
+    heroDetail: state.m_setOpenViewerDetail
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     mainPageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
-    m_setCustomQuery: (e) => dispatch(m_query(e))
+    m_setCustomQuery: (e) => dispatch(m_query(e)),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

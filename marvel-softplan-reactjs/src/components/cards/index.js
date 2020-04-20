@@ -2,14 +2,16 @@ import React from 'react';
 import './style.css';
 import { f_getKey } from '../../utils';
 import { connect } from 'react-redux';
+import { m_openViewerHeroDetail } from '../../actions'
 
-export function Cards({ formatedData }) {
+export function Cards( props ) {
 
     return (
         <div className="main-card-container">
+
             <div className="container-row">
             {
-                formatedData.map((val, idx) => {
+                props.formatedData.map((val, idx) => {
                     if (idx<4)
                         if (val.name) {
                             return (
@@ -20,6 +22,7 @@ export function Cards({ formatedData }) {
                                             src={val.thumb}
                                             alt="imagecard"
                                             className="card-img"
+                                            onClick={() => props.openViewer(val)}
                                         />
                                     </div>
                                     <div key={f_getKey()} className="card-name">
@@ -42,7 +45,7 @@ export function Cards({ formatedData }) {
             <div className="container-row">
             {
 
-                formatedData.map((val, idx) => {
+                props.formatedData.map((val, idx) => {
                     if (idx>3)
                         if (val.name) {
                             return (
@@ -53,6 +56,7 @@ export function Cards({ formatedData }) {
                                             src={val.thumb}
                                             alt="imagecard"
                                             className="card-img"
+                                            onClick={() => props.openViewer(val)}
                                         />
                                     </div>
                                     <div key={f_getKey()} className="card-name">
@@ -72,12 +76,17 @@ export function Cards({ formatedData }) {
             })
             }
             </div>
+
         </div>
     );
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    state: state.m_setLanguage
+
 });
 
-export default connect(mapStateToProps)(Cards);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    openViewer: (e) => dispatch(m_openViewerHeroDetail(e))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cards);

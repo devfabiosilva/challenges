@@ -1,17 +1,21 @@
 import { setMarvelLanguageToLocalStorage } from '../utils/language';
 
-const M_NONE = '0';
-const ADD_TO_LIST = '1';
-const REMOVE_FROM_LIST = '2';
-const MODIFY_LANGUAGE = '3';
-const SET_QUERY = '5';
+const M_NONE = 1;
+const ADD_TO_LIST = 2;
+const REMOVE_FROM_LIST = 3;
+const MODIFY_LANGUAGE = 4;
+const OPEN_VIEWER_DETAIL = 5;
+const SET_QUERY = 6;
 
 export const m_Actions = {
+    
+    M_NONE,
     ADD_TO_LIST,
     REMOVE_FROM_LIST,
     MODIFY_LANGUAGE,
-    M_NONE,
+    OPEN_VIEWER_DETAIL,
     SET_QUERY
+
 }
 
 export function m_addToList(text) {
@@ -57,4 +61,8 @@ export function m_query(query) {
 
     return { type: SET_QUERY, query: query_data }
 
+}
+
+export function m_openViewerHeroDetail(formatedData) {
+    return { type: OPEN_VIEWER_DETAIL, data: formatedData };
 }
