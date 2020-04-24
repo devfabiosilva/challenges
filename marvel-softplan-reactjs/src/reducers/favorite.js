@@ -34,3 +34,16 @@ export const m_favorite = (state = [], action) => {
     }
 
 }
+
+export function m_editor(state = null, action) {
+
+    switch (action.type) {
+
+        case m_Actions.SHOW_EDITOR:
+            return action.hero_to_edit;
+
+        default:
+            return state;
+    
+    }
+}

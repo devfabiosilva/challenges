@@ -5,13 +5,20 @@ import {
 
     m_modifyLanguage,
     m_deleteFromFavorite,
-    m_deleteAllFromFavorite
+    m_deleteAllFromFavorite,
+    m_showEditor
 
 } from '../../actions';
 import { getMarvelLanguageFromLocalStorage } from '../../utils/language';
 import { f_getKey } from '../../utils';
-import { FiTrash2, FiEdit } from 'react-icons/fi';
+import {
+
+    FiTrash2,
+    FiEdit
+
+} from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
+import HeroEditor from '../../components/heroeditor';
 import './style.css';
 
 export function Favorite(props) {
@@ -35,9 +42,14 @@ export function Favorite(props) {
         history.goBack();
     }
 
+    function editMyHero(val) {
+        props.showEditor(val)
+    }
+
     if (props.favoriteLists.length)
         return (
             <div className="fav-container">
+                <HeroEditor />
                 <div className="fav-header">
                     <p className="fav-header-txt">
                         { props.state.interface.favorite_hero_found.replace(/%d/, props.favoriteLists.length) }
@@ -45,7 +57,6 @@ export function Favorite(props) {
                 </div>
                 <div className="fav-list">
                     <div className="fav-list-container">
-
                         {
                             props.favoriteLists.map((val) => (
                                 <div 
@@ -75,8 +86,10 @@ export function Favorite(props) {
                                         className="fav-item-btn-container"
                                     >
                                         <button
-                                            className="edit-btn"
                                             key={f_getKey()}
+                                            className="edit-btn"
+                                            onClick={ () => editMyHero(val) }
+
                                         >
                                            <FiEdit size={16} />
                                         </button>
@@ -91,7 +104,6 @@ export function Favorite(props) {
                                 </div>
                             ))
                         }
-
                     </div>
                 </div>
                 <div className="fav-footer">
@@ -145,7 +157,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
     favoritePageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
     removeFromList: (e) => dispatch(m_deleteFromFavorite(e)),
-    removeAllFromFav: () => dispatch(m_deleteAllFromFavorite())
+    removeAllFromFav: () => dispatch(m_deleteAllFromFavorite()),
+    showEditor: (e) => dispatch(m_showEditor(e))
 
 });
 
