@@ -11,6 +11,7 @@ const MARVEL_INITIAL_STATE_QUERY = {
 
 export function m_setQuery(state = MARVEL_INITIAL_STATE_QUERY, action) {
 
+    let name, page, query;
 
     switch (action.type) {
 
@@ -23,6 +24,31 @@ export function m_setQuery(state = MARVEL_INITIAL_STATE_QUERY, action) {
                 page: action.query.page,
                 query: action.query.query
 
+            }
+
+        case m_Actions.FORCE_SET_QUERY_UPDATE:
+
+            if (action.query) {
+
+                name = action.query.name;
+                page = action.query.page;
+                query = action.query.query;
+
+            } else {
+
+                name =  state.name;
+                page = state.page;
+                query = state.query;
+
+            }
+
+            return {
+
+                update_query: true,
+                name: name,
+                page: page,
+                query: query
+    
             }
 
         default:

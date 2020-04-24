@@ -4,9 +4,14 @@ import Notification from '../../components/notification';
 import { m_modifyLanguage, m_deleteFromFavorite } from '../../actions';
 import { getMarvelLanguageFromLocalStorage } from '../../utils/language';
 import { f_getKey } from '../../utils';
+import { FiTrash2, FiEdit } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
+//import { m_force_query } from '../../actions';
 import './style.css';
 
 export function Favorite(props) {
+
+    const history = useHistory();
 
     useEffect(
 
@@ -21,11 +26,18 @@ export function Favorite(props) {
 
     )
 
+    function goBack() {
+//        props.m_setForceQuery();
+        history.goBack();
+    }
+
     if (props.favoriteLists.length)
         return (
             <div className="fav-container">
                 <div className="fav-header">
-                    { props.state.interface.favorite_hero_found.replace(/%d/, props.favoriteLists.length) }
+                    <p className="fav-header-txt">
+                        { props.state.interface.favorite_hero_found.replace(/%d/, props.favoriteLists.length) }
+                    </p>
                 </div>
                 <div className="fav-list">
                     <div className="fav-list-container">
@@ -56,15 +68,17 @@ export function Favorite(props) {
                                         className="fav-item-btn-container"
                                     >
                                         <button
+                                            className="edit-btn"
                                             key={f_getKey()}
                                         >
-                                            Botao1
+                                           <FiEdit size={16} />
                                         </button>
                                         <button
+                                            className="remove-btn"
                                             key={val.id}
                                             onClick={() => props.removeFromList(val.id)}
                                         >
-                                            Excluir1
+                                             <FiTrash2 size={16} />
                                         </button>
                                     </div>
                                 </div>
@@ -74,7 +88,11 @@ export function Favorite(props) {
                     </div>
                 </div>
                 <div className="fav-footer">
-                    Footer
+                    <button
+                        onClick={goBack}
+                    >
+                        { props.state.interface.go_back }
+                    </button>
                 </div>
             </div>
         );
@@ -82,7 +100,9 @@ export function Favorite(props) {
         return (
             <div className="fav-container">
                 <div className="fav-header">
-                    Cabeçalho
+                    <p className="fav-header-txt">
+                        { props.state.interface.empty_list_msg_title }
+                    </p>
                 </div>
                 <div className="fav-list">
                     <Notification 
@@ -93,7 +113,9 @@ export function Favorite(props) {
                     </Notification>
                 </div>
                 <div className="fav-footer">
-                    <button>
+                    <button
+                        onClick={goBack}
+                    >
                         { props.state.interface.go_back }
                     </button>
                 </div>
@@ -111,7 +133,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
 
     favoritePageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
-    removeFromList: (e) => dispatch(m_deleteFromFavorite(e))
+    removeFromList: (e) => dispatch(m_deleteFromFavorite(e)),
+//    m_setForceQuery: () => dispatch(m_force_query(null)),
 
 });
 

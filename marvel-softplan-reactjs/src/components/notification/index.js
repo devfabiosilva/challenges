@@ -39,9 +39,7 @@ export function Notification({ state, nAlert, nError, children, title, nType }) 
 
     if (nType) {
 
-        nAlert = (nType===notificationType.NOTF_ALERT);
-
-        if (!nAlert)
+        if (!(nAlert = (nType===notificationType.NOTF_ALERT)))
             nError = (nType===notificationType.NOTF_ERROR);
 
     }

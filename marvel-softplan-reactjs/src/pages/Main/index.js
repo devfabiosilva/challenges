@@ -5,7 +5,7 @@ import Notification from '../../components/notification';
 import Paginate from '../../components/pagination';
 import { connect } from 'react-redux';
 import { checkApiKey } from '../../utils/secure';
-import { m_modifyLanguage, m_query } from '../../actions';
+import { m_modifyLanguage, m_query, m_force_query } from '../../actions';
 import { useQuery } from '../../utils';
 import {
 
@@ -67,6 +67,7 @@ export function Main(props) {
                     }
 
             }
+
         },
         [
 
@@ -80,7 +81,14 @@ export function Main(props) {
     )
 
     function openSavedFavorite() {
-        (props.savedFavorites.length)?props.history.push('/fav'):alert(props.state.interface.fav_list_empty);
+        //(props.savedFavorites.length)?props.history.push('/fav'):alert(props.state.interface.fav_list_empty);
+        if (props.savedFavorites.length) {
+
+            props.history.push('/fav');
+            props.m_setForceQuery();
+
+        } else
+            alert(props.state.interface.fav_list_empty);
     }
 
     function findHero(e) {
@@ -169,15 +177,19 @@ export function Main(props) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
+
     state: state.m_setLanguage,
     marvel_query: state.m_setQuery,
     heroDetail: state.m_setOpenViewerDetail,
     savedFavorites: state.m_favorite
+
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+
     mainPageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
     m_setCustomQuery: (e) => dispatch(m_query(e)),
+    m_setForceQuery: () => dispatch(m_force_query(null))
 
 });
 

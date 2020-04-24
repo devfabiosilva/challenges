@@ -6,6 +6,7 @@ const OPEN_VIEWER_DETAIL = 5;
 const SET_QUERY = 6;
 const ADD_TO_FAVORITE = 7;
 const REMOVE_FROM_FAVORITE = 8;
+const FORCE_SET_QUERY_UPDATE = 9;
 
 export const m_Actions = {
     
@@ -14,7 +15,8 @@ export const m_Actions = {
     OPEN_VIEWER_DETAIL,
     SET_QUERY,
     ADD_TO_FAVORITE,
-    REMOVE_FROM_FAVORITE
+    REMOVE_FROM_FAVORITE,
+    FORCE_SET_QUERY_UPDATE
 
 }
 
@@ -67,4 +69,8 @@ export function m_query(query) {
 
 export function m_openViewerHeroDetail(formatedData) {
     return { type: OPEN_VIEWER_DETAIL, data: formatedData };
+}
+
+export function m_force_query(query) {
+    return { type: FORCE_SET_QUERY_UPDATE, query }
 }

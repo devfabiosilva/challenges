@@ -2,50 +2,68 @@
     width: 90%;
     height: 550px;
     margin: 20px auto 20px auto;
-    background-color: thistle;
+    /* background-color: thistle; */
 }
 .fav-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     height: 10%;
-    background-color: tomato;
+    /*background-color: tomato; */
 }
 .fav-list {
     width: 70%;
     height: 80%;
     margin: auto;
-    background-color: turquoise;
+    /* background-color: turquoise; */
+    overflow-y: scroll;
 }
 .fav-list-container {
-    background-color: violet;
+    /* background-color: violet; */
 }
 
 .fav-list-item-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
 }
 
 .fav-img-container {
     width: 50px;
     height: 50px;
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
 
 .fav-img {
-    background-color: bisque;
+    /*background-color: bisque; */
 }
 
 .fav-item-name {
     width: 60%;
-    background-color: coral;
+    /*background-color: coral; */
 }
 
 .fav-item-btn-container {
-    background-color: cyan;
+    display: flex;
+    /* background-color: cyan; */
 }
 
 .fav-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 10%;
-    background-color: rgb(0, 76, 139);
+    /* background-color: rgb(0, 76, 139); */
+}
+
+.edit-btn,
+.remove-btn {
+    margin: auto 2px;
+    width: 45px;
+}
+.fav-header-txt {
+    color: rgb(94, 94, 94);
+    font-size: 32px;
 }
