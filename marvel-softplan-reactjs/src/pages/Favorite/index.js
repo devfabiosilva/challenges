@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Notification from '../../components/notification';
-import { m_modifyLanguage, m_deleteFromFavorite } from '../../actions';
+import { 
+
+    m_modifyLanguage,
+    m_deleteFromFavorite,
+    m_deleteAllFromFavorite
+
+} from '../../actions';
 import { getMarvelLanguageFromLocalStorage } from '../../utils/language';
 import { f_getKey } from '../../utils';
 import { FiTrash2, FiEdit } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-//import { m_force_query } from '../../actions';
 import './style.css';
 
 export function Favorite(props) {
@@ -27,7 +32,6 @@ export function Favorite(props) {
     )
 
     function goBack() {
-//        props.m_setForceQuery();
         history.goBack();
     }
 
@@ -55,11 +59,14 @@ export function Favorite(props) {
                                         <img
                                             key={f_getKey()}
                                             className="fav-img" alt="img-fav"
+                                            src={val.thumb}
+                                            onClick={() => alert("Imagem")}
                                         />
                                     </div>
                                     <div 
                                         key={f_getKey()}
                                         className="fav-item-name"
+                                        onClick={() => alert("Ola")}
                                     >
                                         { val.name }
                                     </div>
@@ -93,6 +100,11 @@ export function Favorite(props) {
                     >
                         { props.state.interface.go_back }
                     </button>
+                    <button
+                        onClick={props.removeAllFromFav}
+                    >
+                        { props.state.interface.delete_all_hero_list }
+                    </button>
                 </div>
             </div>
         );
@@ -101,7 +113,6 @@ export function Favorite(props) {
             <div className="fav-container">
                 <div className="fav-header">
                     <p className="fav-header-txt">
-                        { props.state.interface.empty_list_msg_title }
                     </p>
                 </div>
                 <div className="fav-list">
@@ -109,7 +120,7 @@ export function Favorite(props) {
                         nAlert 
                         title={ props.state.interface.empty_list_msg_title }
                     >
-                            { props.state.interface.empty_list_msg }
+                        { props.state.interface.empty_list_msg }
                     </Notification>
                 </div>
                 <div className="fav-footer">
@@ -134,7 +145,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
     favoritePageModifyLang: (e) => dispatch(m_modifyLanguage(e)),
     removeFromList: (e) => dispatch(m_deleteFromFavorite(e)),
-//    m_setForceQuery: () => dispatch(m_force_query(null)),
+    removeAllFromFav: () => dispatch(m_deleteAllFromFavorite())
 
 });
 

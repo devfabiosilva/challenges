@@ -7,6 +7,7 @@ const SET_QUERY = 6;
 const ADD_TO_FAVORITE = 7;
 const REMOVE_FROM_FAVORITE = 8;
 const FORCE_SET_QUERY_UPDATE = 9;
+const REMOVE_ALL_FROM_FAVORITE = 10;
 
 export const m_Actions = {
     
@@ -16,7 +17,8 @@ export const m_Actions = {
     SET_QUERY,
     ADD_TO_FAVORITE,
     REMOVE_FROM_FAVORITE,
-    FORCE_SET_QUERY_UPDATE
+    FORCE_SET_QUERY_UPDATE,
+    REMOVE_ALL_FROM_FAVORITE
 
 }
 
@@ -31,6 +33,10 @@ export function m_addToFavorite(data) {
 
 export function m_deleteFromFavorite(id) {
     return { type: REMOVE_FROM_FAVORITE, id }
+}
+
+export function m_deleteAllFromFavorite() {
+    return { type: REMOVE_ALL_FROM_FAVORITE }
 }
 
 export function m_modifyLanguage(lang) {

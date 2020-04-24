@@ -15,22 +15,31 @@
 .fav-list {
     width: 70%;
     height: 80%;
-    margin: auto;
+    margin: 20px auto;
     /* background-color: turquoise; */
-    overflow-y: scroll;
 }
 .fav-list-container {
     /* background-color: violet; */
+    height: 100%;
+    border: solid #ccc;
+    border-width: 3px;
+    border-radius: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .fav-list-item-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 6px 0;
     /* background-color: yellowgreen; */
 }
 
 .fav-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 50px;
     height: 50px;
     /*background-color: aqua;*/
@@ -42,6 +51,8 @@
 
 .fav-item-name {
     width: 60%;
+    cursor: pointer;
+    text-align: center;
     /*background-color: coral; */
 }
 
@@ -53,7 +64,7 @@
 .fav-footer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     height: 10%;
     /* background-color: rgb(0, 76, 139); */
 }
@@ -66,4 +77,13 @@
 .fav-header-txt {
     color: rgb(94, 94, 94);
     font-size: 32px;
+}
+
+.fav-img {
+
+    max-width:45px;
+    max-height:90%;
+    width: auto;
+    height: auto;
+    cursor: pointer;
 }

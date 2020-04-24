@@ -25,6 +25,9 @@ export const m_favorite = (state = [], action) => {
                 return index.id !== action.id
             });
 
+        case m_Actions.REMOVE_ALL_FROM_FAVORITE:
+            return [];
+
         default:
             return state;
 

@@ -37,12 +37,9 @@ function NotfIcon( { nAlert, nError } ) {
 
 export function Notification({ state, nAlert, nError, children, title, nType }) {
 
-    if (nType) {
-
+    if (nType)
         if (!(nAlert = (nType===notificationType.NOTF_ALERT)))
             nError = (nType===notificationType.NOTF_ERROR);
-
-    }
 
     return (
         <DivNotification>
