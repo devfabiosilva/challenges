@@ -13,7 +13,8 @@
     /*background-color: tomato; */
 }
 .fav-list {
-    width: 70%;
+    /*width: 70%;*/
+    width: 850px;
     height: 80%;
     margin: 20px auto;
     /* background-color: turquoise; */
@@ -44,11 +45,11 @@
     height: 50px;
     /*background-color: aqua;*/
 }
-
+/*
 .fav-img {
-    /*background-color: bisque; */
+    background-color: bisque;
 }
-
+*/
 .fav-item-name {
     width: 60%;
     cursor: pointer;
@@ -60,7 +61,14 @@
     display: flex;
     /* background-color: cyan; */
 }
-
+.fav-list-container-main {
+    /*background-color: rgb(238, 216, 216);*/
+    width: 60px 4px;
+    transition: 0.4s;
+}
+.fav-list-container-main:hover {
+    background-color: #ccc;
+}
 .fav-footer {
     display: flex;
     align-items: center;
@@ -74,6 +82,9 @@
     margin: auto 2px;
     width: 45px;
 }
+.remove-btn {
+    background-color: #ca0f0f;
+}
 .fav-header-txt {
     color: rgb(94, 94, 94);
     font-size: 32px;
@@ -86,4 +97,29 @@
     width: auto;
     height: auto;
     cursor: pointer;
+}
+
+.list-container-accordion {
+
+    padding: 5px 18px 15px 18px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 640px;
+    margin: auto;
+    border-radius: 6px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.list-accordeon-not-found,
+.list-accordeon-title {
+
+    font-style: normal;
+    font-size: 14px;
+    margin: 0 0 6px 0;
+    font-weight: bold;
+    text-decoration: underline;
+
 }

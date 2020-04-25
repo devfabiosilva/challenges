@@ -33,7 +33,9 @@ export const LANG_PT_BR = {
     empty_list_msg: "A lista de heróis está vazia. Adiciona para visualizar ou editar/excluir",
     empty_list_msg_title: "Lista de heróis vazia",
     favorite_hero_found: "Você tem %d herói(s) na lista",
-    delete_all_hero_list: "Remover todos"
+    delete_all_hero_list: "Remover todos",
+    found_n_series: "Encontrado: %d série(s)",
+    no_series_found: "Nenhuma série encontrada"
 
 }
 
@@ -68,7 +70,9 @@ export const LANG_EN_US = {
     empty_list_msg: "Hero list is empty. Please add at least one hero to edit/delete",
     empty_list_msg_title: "Empty hero list",
     favorite_hero_found: "You have %d hero(es)",
-    delete_all_hero_list: "Remove all"
+    delete_all_hero_list: "Remove all",
+    found_n_series: "Found %d serie(s)",
+    no_series_found: "No series found"
 
 }
 

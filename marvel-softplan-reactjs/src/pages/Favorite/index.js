@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Notification from '../../components/notification';
 import { 
@@ -21,6 +21,111 @@ import { useHistory } from 'react-router-dom';
 import HeroEditor from '../../components/heroeditor';
 import './style.css';
 
+export function Accordeon({ parentProps, val }) {
+
+    const [ showAccordeon, setShowAccordeon ] = useState(false);
+
+    function editMyHero(val) {
+        parentProps.showEditor(val)
+    }
+
+    function toggleThisAccordeon() {
+        (showAccordeon)?setShowAccordeon(false):setShowAccordeon(true);
+    }
+    return (
+        [
+            <div 
+                key={f_getKey()}
+                className="fav-list-container-main"
+            >
+                <div 
+                    key={f_getKey()}
+                    className="fav-list-item-container"
+                >
+                    <div
+                        key={f_getKey()}
+                        className="fav-img-container"
+                    > 
+                        <img
+                            key={f_getKey()}
+                            className="fav-img" alt="img-fav"
+                            src={val.thumb}
+                            onClick={() => alert("Imagem")}
+                        />
+                    </div>
+                    <div
+
+                        key={f_getKey()}
+                        className="fav-item-name"
+                        onClick={toggleThisAccordeon}
+                    
+                    >
+                        { val.name }
+                    </div>
+                    <div
+                        key={f_getKey()}
+                        className="fav-item-btn-container"
+                    >
+                        <button
+                            key={f_getKey()}
+                            className="edit-btn"
+                            onClick={ () => editMyHero(val) }
+
+                        >
+                            <FiEdit size={16} />
+                        </button>
+                        <button
+                            className="remove-btn"
+                            key={val.id}
+                            onClick={() => parentProps.removeFromList(val.id)}
+                        >
+                            <FiTrash2 size={16} />
+                        </button>
+                    </div>
+                </div>
+            </div>,
+            <div 
+                key={f_getKey()}
+                className="list-container-accordion"
+                style={{display:(showAccordeon?"grid":"none")}}
+            >
+                {
+                    (val.series.items.length)?
+                    [
+                        <div
+                            className="list-accordeon-title"
+                            key={f_getKey()}
+                        >
+                            {
+                                parentProps.state.interface.found_n_series.replace(
+                                    /%d/,
+                                    val.series.items.length
+                                )
+                            }
+                        </div>,
+                        val.series.items.map(
+                            (k) => (
+                                <div
+                                    className="list-accordeon-name"
+                                    key={f_getKey()}
+                                >
+                                    {k.name}
+                                </div>
+                            )
+                        )
+                    ]:
+                        <div
+                            className="list-accordeon-not-found"
+                            key={f_getKey()}
+                        >
+                            {parentProps.state.interface.no_series_found}
+                        </div>
+                    }
+            </div>
+        ]
+    );
+}
+
 export function Favorite(props) {
 
     const history = useHistory();
@@ -42,10 +147,6 @@ export function Favorite(props) {
         history.goBack();
     }
 
-    function editMyHero(val) {
-        props.showEditor(val)
-    }
-
     if (props.favoriteLists.length)
         return (
             <div className="fav-container">
@@ -58,51 +159,11 @@ export function Favorite(props) {
                 <div className="fav-list">
                     <div className="fav-list-container">
                         {
-                            props.favoriteLists.map((val) => (
-                                <div 
-                                    key={f_getKey()}
-                                    className="fav-list-item-container"
-                                >
-                                    <div
-                                        key={f_getKey()}
-                                        className="fav-img-container"
-                                    >
-                                        <img
-                                            key={f_getKey()}
-                                            className="fav-img" alt="img-fav"
-                                            src={val.thumb}
-                                            onClick={() => alert("Imagem")}
-                                        />
-                                    </div>
-                                    <div 
-                                        key={f_getKey()}
-                                        className="fav-item-name"
-                                        onClick={() => alert("Ola")}
-                                    >
-                                        { val.name }
-                                    </div>
-                                    <div
-                                        key={f_getKey()}
-                                        className="fav-item-btn-container"
-                                    >
-                                        <button
-                                            key={f_getKey()}
-                                            className="edit-btn"
-                                            onClick={ () => editMyHero(val) }
-
-                                        >
-                                           <FiEdit size={16} />
-                                        </button>
-                                        <button
-                                            className="remove-btn"
-                                            key={val.id}
-                                            onClick={() => props.removeFromList(val.id)}
-                                        >
-                                             <FiTrash2 size={16} />
-                                        </button>
-                                    </div>
-                                </div>
-                            ))
+                            props.favoriteLists.map(
+                                (val) => (
+                                    <Accordeon key={f_getKey()} val={val} parentProps={props}/>
+                                )
+                            )
                         }
                     </div>
                 </div>
