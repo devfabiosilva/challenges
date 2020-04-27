@@ -15,10 +15,62 @@
 }
 
 .hero-editor-window {
-
+   /* background-color: sienna; */
     border-radius: 4px;
     background-color: #f0f0f5;
     width: 711px;
     height: 440px;
 
+}
+
+.hero-editor-header {
+   /* background-color: silver; */
+    text-align: center;
+    font-size: 26px;
+    font-style: italic;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.hero-editor-body {
+    margin: 0 auto;
+    width: 95%;
+    height: 80%;
+    /* background-color: aquamarine; */
+}
+
+.hero-editor-footer {
+   /* background-color: burlywood; */
+    display: flex;
+    justify-content: space-around;
+}
+
+.hero-editor-img-container {
+    /* background-color: chartreuse; */
+    display: flex;
+    align-items: center;
+}
+.editor-img {
+/*    background-color: cornflowerblue; */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+.hero-title-input {
+ /*   background-color: darkkhaki; */
+    background-color: transparent;
+    width: 500px;
+    border-style: hidden;
+    text-align: center;
+    font-style: italic;
+}
+
+.editor-series-container {
+    background-color: darkslategray;
+}
+
+.close-editor-window-btn {
+    background-color: #ca0f0f;
 }

@@ -35,7 +35,11 @@ export const LANG_PT_BR = {
     favorite_hero_found: "Você tem %d herói(s) na lista",
     delete_all_hero_list: "Remover todos",
     found_n_series: "Encontrado: %d série(s)",
-    no_series_found: "Nenhuma série encontrada"
+    no_series_found: "Nenhuma série encontrada",
+    editor_header_title: "Clique nos campos para editar/excluir",
+    edit_placeholder_title: "Edite o título aqui",
+    editor_btn_cancel_and_close: "Cancelar e fechar",
+    editor_btn_save_and_close: "Salvar e fechar"
 
 }
 
@@ -72,7 +76,11 @@ export const LANG_EN_US = {
     favorite_hero_found: "You have %d hero(es)",
     delete_all_hero_list: "Remove all",
     found_n_series: "Found %d serie(s)",
-    no_series_found: "No series found"
+    no_series_found: "No series found",
+    editor_header_title: "Click in field to edit/delete",
+    edit_placeholder_title: "Edit title here",
+    editor_btn_cancel_and_close: "Cancel and close",
+    editor_btn_save_and_close: "Save and close"
 
 }
 

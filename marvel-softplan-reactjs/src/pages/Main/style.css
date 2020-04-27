@@ -1,34 +1,24 @@
 .container {
     width: 100%;
-/*    background-color: #0b6e13; */
 }
 
 .tools {
     width: 100%;
     height: 30%;
-/*    background-color: aqua; */
     display: flex;
 }
 .search-tools {
     width: 70%;
-/*    background-color: brown; */
     display: flex;
     align-items: center;
 }
 .heroes-page {
     display: flex;
     height: 500px;
-    /* background-color: black; */
-
     justify-content: center;
     align-items: center;
 }
-/*
-#search-input {
-    width: 450px;
-    max-width: 650px;
-}
-*/
+
 form#search * {
     font-family: sans-serif;
 }
@@ -85,11 +75,7 @@ form#search button {
     min-width: 240px;
     max-width: 280px;
 }
-/*
-.saved-list-btn:hover {
-    background-color: rgb(8, 131, 14);
-}
-*/
+
 .list-favorites {
     display: contents;
 }
@@ -100,13 +86,3 @@ form#search button {
 .tools {
     margin: 10px 0;
 }
-/*
-@media all and (min-width: 500px) {
-    form#search label {
-      display: inline;
-    }  
-    form#search input::placeholder {
-      opacity: 0;
-    }  
-}
-*/
