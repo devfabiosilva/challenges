@@ -28,6 +28,21 @@ export const m_favorite = (state = [], action) => {
         case m_Actions.REMOVE_ALL_FROM_FAVORITE:
             return [];
 
+        case m_Actions.SAVE_EDITED_HERO:
+
+            return state.map (
+
+                (value) => {
+
+                    if ( value.id !== action.hero_to_edit.id )
+                        return value;
+
+                    return action.hero_to_edit;
+
+                }
+
+            );
+
         default:
             return state;
 

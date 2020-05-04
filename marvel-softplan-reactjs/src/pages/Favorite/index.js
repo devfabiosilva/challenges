@@ -30,8 +30,9 @@ export function Accordeon({ parentProps, val }) {
     }
 
     function toggleThisAccordeon() {
-        (showAccordeon)?setShowAccordeon(false):setShowAccordeon(true);
+        setShowAccordeon(!showAccordeon);
     }
+
     return (
         [
             <div 
@@ -104,12 +105,12 @@ export function Accordeon({ parentProps, val }) {
                             }
                         </div>,
                         val.series.items.map(
-                            (k) => (
+                            (serie) => (
                                 <div
                                     className="list-accordeon-name"
                                     key={f_getKey()}
                                 >
-                                    {k.name}
+                                    {serie.name}
                                 </div>
                             )
                         )

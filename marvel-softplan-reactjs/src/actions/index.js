@@ -9,6 +9,7 @@ const REMOVE_FROM_FAVORITE = 8;
 const FORCE_SET_QUERY_UPDATE = 9;
 const REMOVE_ALL_FROM_FAVORITE = 10;
 const SHOW_EDITOR = 11;
+const SAVE_EDITED_HERO = 12;
 
 export const m_Actions = {
     
@@ -20,7 +21,8 @@ export const m_Actions = {
     REMOVE_FROM_FAVORITE,
     FORCE_SET_QUERY_UPDATE,
     REMOVE_ALL_FROM_FAVORITE,
-    SHOW_EDITOR
+    SHOW_EDITOR,
+    SAVE_EDITED_HERO
 
 }
 
@@ -85,4 +87,8 @@ export function m_force_query(query) {
 
 export function m_showEditor(hero_to_edit) {
     return { type: SHOW_EDITOR, hero_to_edit }
+}
+
+export function m_editHero(hero_to_edit) {
+    return { type: SAVE_EDITED_HERO, hero_to_edit }
 }
