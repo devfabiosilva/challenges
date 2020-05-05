@@ -23,12 +23,68 @@ export function HeroEditor(props) {
         ]
     )
 
+    function editHeroName(e) {
+
+        if ((e.key === "Enter") || (e.key ==="Blur")) {
+
+            if (e.evt.target.value.trim()==="") {
+                
+                if (e.key === "Blur") {
+
+                    e.evt.target.value = heroDataTmp.name;
+
+                    return;
+
+                }
+
+                alert(props.state.interface.hero_name_empty_err);
+
+                return;
+
+            }
+
+            if (props.m_favorites.filter(
+                (item) => {
+                    return ((item.id !== heroDataTmp.id)&&(item.name === e.evt.target.value))
+                }
+            ).length) {
+                alert(props.state.interface.hero_name_already_exists.replace(/%d/, e.evt.target.value));
+                e.evt.target.value=heroDataTmp.name;
+                return;
+
+            }
+
+            /*setHeroDataTmp(
+                {
+                    id: heroDataTmp.id,
+                    name: heroDataTmp.name,
+                    series: {
+                        items: heroDataTmp.series.items.map(
+
+                            (value, index) => {
+
+                                if (index !==e.index)
+                                    return value;
+                                
+                                return { name: e.evt.target.value };
+
+                            }
+
+                        )
+                    },
+                    thumb: heroDataTmp.thumb
+                }
+            );*/
+
+        }
+
+    }
+
     function editSerie(e) {
 
         if ((e.key === "Enter") || (e.key ==="Blur")) {
             
             if (e.evt.target.value.trim()==="") {
-
                 
                 if (e.key === "Blur") {
                     e.evt.target.value=heroDataTmp.series.items[e.index].name;
@@ -46,9 +102,10 @@ export function HeroEditor(props) {
                     return (index !== e.index)&&(item.name === e.evt.target.value);
                 }
             ).length) {
-                //alert(`Série existente ${e.evt.target.value}`);
+
                 alert(props.state.interface.serie_already_exists.replace(/%d/, e.evt.target.value))
                 e.evt.target.value=heroDataTmp.series.items[e.index].name;
+
                 return;
             }
 
@@ -63,7 +120,7 @@ export function HeroEditor(props) {
 
                                 (value, index) => {
 
-                                    if (index !==e.index)
+                                    if (index !== e.index)
                                         return value;
                                     
                                     return { name: e.evt.target.value };
@@ -72,7 +129,9 @@ export function HeroEditor(props) {
 
                             )
                         },
+
                         thumb: heroDataTmp.thumb
+
                     }
                 );
 
@@ -126,6 +185,19 @@ export function HeroEditor(props) {
     function saveAndCloseWindow(saveHero) {
 //if saveHero=true; close and save edited data
 //if saveHerp=false; close window and discard data
+
+        if (saveHero) {
+            if (props.m_favorites.filter(
+                (item) => {
+                    return ((item.id !== heroDataTmp.id)&&(item.name === heroDataTmp.name))
+                }
+            ).length) {
+                alert(props.state.interface.hero_name_already_exists.replace(/%d/, heroDataTmp.name));
+                return;
+
+            }
+        }
+
         props.m_close(null);
 
         if (saveHero)
@@ -153,6 +225,8 @@ export function HeroEditor(props) {
                             type="text"
                             placeholder={ props.state.interface.edit_placeholder_title }
                             defaultValue={ (heroDataTmp)?heroDataTmp.name:"" }
+                            onKeyPress={(e) => editHeroName({ key: e.key, evt: e })}
+                            onBlur ={(e) => editHeroName({ key: "Blur", evt: e})}
                         />
                     </div>
                     <div className="editor-series-container">
@@ -217,6 +291,7 @@ export function HeroEditor(props) {
 const mapStateToProps = (state, ownProps) => ({
 
     m_editor: state.m_editor,
+    m_favorites: state.m_favorite,
     state: state.m_setLanguage
 
 });

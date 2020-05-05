@@ -41,7 +41,9 @@ export const LANG_PT_BR = {
     editor_btn_cancel_and_close: "Cancelar e fechar",
     editor_btn_save_and_close: "Salvar e fechar",
     serie_could_not_be_empty: "Série não pode estar vazia",
-    serie_already_exists: "Série já existe %d"
+    serie_already_exists: "Série já existe %d",
+    hero_name_already_exists: "Herói '%d' já existe",
+    hero_name_empty_err: "Nome do herói não deve estar vazio"
 
 }
 
@@ -84,7 +86,9 @@ export const LANG_EN_US = {
     editor_btn_cancel_and_close: "Cancel and close",
     editor_btn_save_and_close: "Save and close",
     serie_could_not_be_empty: "Serie can not have empty field",
-    serie_already_exists: "Serie already exists %d"
+    serie_already_exists: "Serie already exists %d",
+    hero_name_already_exists: "Hero '%d' already exists",
+    hero_name_empty_err: "Hero name can not be empty"
 
 }
 
