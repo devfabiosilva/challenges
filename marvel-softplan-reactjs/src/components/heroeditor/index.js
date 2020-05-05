@@ -24,7 +24,85 @@ export function HeroEditor(props) {
     )
 
     function editSerie(e) {
-        console.log(e);
+
+        if ((e.key === "Enter") || (e.key ==="Blur")) {
+            
+            if (e.evt.target.value.trim()==="") {
+
+                
+                if (e.key === "Blur") {
+                    e.evt.target.value=heroDataTmp.series.items[e.index].name;
+                    return;
+                }
+
+                alert( props.state.interface.serie_could_not_be_empty );
+
+                return;
+
+            }
+
+            if (heroDataTmp.series.items.filter(
+                (item, index) => {
+                    return (index !== e.index)&&(item.name === e.evt.target.value);
+                }
+            ).length) {
+                //alert(`Série existente ${e.evt.target.value}`);
+                alert(props.state.interface.serie_already_exists.replace(/%d/, e.evt.target.value))
+                e.evt.target.value=heroDataTmp.series.items[e.index].name;
+                return;
+            }
+
+            if (heroDataTmp.series.items[e.index] !== e.evt.target.value) {
+
+                setHeroDataTmp(
+                    {
+                        id: heroDataTmp.id,
+                        name: heroDataTmp.name,
+                        series: {
+                            items: heroDataTmp.series.items.map(
+
+                                (value, index) => {
+
+                                    if (index !==e.index)
+                                        return value;
+                                    
+                                    return { name: e.evt.target.value };
+
+                                }
+
+                            )
+                        },
+                        thumb: heroDataTmp.thumb
+                    }
+                );
+
+            }
+
+        }
+
+    }
+
+    function addNewSerie(e) {
+
+        let value = e.target.value;
+
+        if (e.key === "Enter") {
+
+            if (value.trim() === "")
+                return;
+
+            if (heroDataTmp.series.items.filter(
+                (item) => {
+                    return item.name === value;
+                }
+            ).length) {
+                alert(props.state.interface.serie_already_exists.replace(/%d/, value));
+                return;
+            }
+
+        }
+
+
     }
 
     function deleteSerie(index) {
@@ -46,7 +124,8 @@ export function HeroEditor(props) {
     }
 
     function saveAndCloseWindow(saveHero) {
-
+//if saveHero=true; close and save edited data
+//if saveHerp=false; close window and discard data
         props.m_close(null);
 
         if (saveHero)
@@ -89,12 +168,12 @@ export function HeroEditor(props) {
                                                         key={f_getKey()}
                                                         type="text"
                                                         defaultValue={ item.name }
-                                                        onKeyPress={(e)=>editSerie({value: e.target.value, index})}
-                                                        onBlur ={(e)=>editSerie({value: e.target.value, index})}
+                                                        onKeyPress={(e)=>editSerie({ key: e.key, index, evt: e })}
+                                                        onBlur ={(e)=>editSerie({ key: "Blur", index, evt: e})}
                                                     />
                                                     <button
                                                         key={index}
-                                                        onClick={(e) => deleteSerie(index)}
+                                                        onClick={() => deleteSerie(index)}
                                                     >
                                                         x
                                                     </button>
@@ -109,6 +188,8 @@ export function HeroEditor(props) {
                                     className="new-serie-input"
                                     type="text"
                                     placeholder="Digite nova série aqui"
+                                    onKeyPress={(e) => addNewSerie(e)}
+                                    onBlur={(e) => { e.target.value="" } }
                                 />                                    
                             </div>
                         </div>
@@ -125,7 +206,7 @@ export function HeroEditor(props) {
                         className="close-and-save"
                         onClick={ () => saveAndCloseWindow(true) }
                     >
-                        Salvar e fechar
+                        { props.state.interface.editor_btn_save_and_close }
                     </button>
                 </div>
             </div>
