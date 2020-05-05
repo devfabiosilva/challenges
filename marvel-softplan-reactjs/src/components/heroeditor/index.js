@@ -9,13 +9,11 @@ import './style.css';
 export function HeroEditor(props) {
 
     const [ heroDataTmp, setHeroDataTmp ] = useState(null)
+    const [ heroName, setHeroName ] = useState("");
 
     useEffect(
         () => {
-
-            if (!heroDataTmp)
-                setHeroDataTmp(props.m_editor);
-
+            (heroDataTmp)?setHeroName(heroDataTmp.name):setHeroDataTmp(props.m_editor); 
         },
         [
             props.m_editor, 
@@ -29,13 +27,8 @@ export function HeroEditor(props) {
 
             if (e.evt.target.value.trim()==="") {
                 
-                if (e.key === "Blur") {
-
-                    e.evt.target.value = heroDataTmp.name;
-
+                if (e.key === "Blur")
                     return;
-
-                }
 
                 alert(props.state.interface.hero_name_empty_err);
 
@@ -54,27 +47,16 @@ export function HeroEditor(props) {
 
             }
 
-            /*setHeroDataTmp(
+            setHeroDataTmp(
                 {
                     id: heroDataTmp.id,
-                    name: heroDataTmp.name,
+                    name: e.evt.target.value,
                     series: {
-                        items: heroDataTmp.series.items.map(
-
-                            (value, index) => {
-
-                                if (index !==e.index)
-                                    return value;
-                                
-                                return { name: e.evt.target.value };
-
-                            }
-
-                        )
+                        items: heroDataTmp.series.items
                     },
                     thumb: heroDataTmp.thumb
                 }
-            );*/
+            );
 
         }
 
@@ -144,6 +126,7 @@ export function HeroEditor(props) {
     function addNewSerie(e) {
 
         let value = e.target.value;
+        let newItem = null;
 
         if (e.key === "Enter") {
 
@@ -159,8 +142,21 @@ export function HeroEditor(props) {
                 return;
             }
 
-        }
+            newItem = heroDataTmp.series.items;
+            newItem.push({name: value});
 
+            setHeroDataTmp(
+                {
+                    id: heroDataTmp.id,
+                    name: heroDataTmp.name,
+                    series: {
+                        items: newItem
+                    },
+                    thumb: heroDataTmp.thumb
+                }
+            );
+            e.target.value = "";
+        }
 
     }
 
@@ -185,8 +181,13 @@ export function HeroEditor(props) {
     function saveAndCloseWindow(saveHero) {
 //if saveHero=true; close and save edited data
 //if saveHerp=false; close window and discard data
-
         if (saveHero) {
+
+            if (heroName.trim()==="") {
+                alert(props.state.interface.hero_name_empty_err);
+                return;
+            }
+
             if (props.m_favorites.filter(
                 (item) => {
                     return ((item.id !== heroDataTmp.id)&&(item.name === heroDataTmp.name))
@@ -204,9 +205,12 @@ export function HeroEditor(props) {
             props.m_saveModifiedHero(heroDataTmp);
 
         setHeroDataTmp(null);
+        console.log("Aqui");
+        console.log(props.m_editor)
 
     }
-
+//defaultValue={ (heroDataTmp)?heroDataTmp.name:"" }
+//onBlur ={(e) => editHeroName({ key: "Blur", evt: e})}
     return (
         <div className="hero-editor-container" style={{display:(heroDataTmp)?"flex": "none"}}>
             <div className="hero-editor-window">
@@ -224,7 +228,8 @@ export function HeroEditor(props) {
                             className="hero-title-input"
                             type="text"
                             placeholder={ props.state.interface.edit_placeholder_title }
-                            defaultValue={ (heroDataTmp)?heroDataTmp.name:"" }
+                            value={heroName}
+                            onChange={(e) => setHeroName(e.target.value)}
                             onKeyPress={(e) => editHeroName({ key: e.key, evt: e })}
                             onBlur ={(e) => editHeroName({ key: "Blur", evt: e})}
                         />
