@@ -6,6 +6,8 @@ import { m_showEditor, m_editHero } from '../../actions';
 import { f_getKey } from '../../utils';
 import './style.css';
 
+const MAX_FILE_SIZE = 100000;
+
 export function HeroEditor(props) {
 
     const [ heroDataTmp, setHeroDataTmp ] = useState(null)
@@ -195,7 +197,6 @@ export function HeroEditor(props) {
             ).length) {
                 alert(props.state.interface.hero_name_already_exists.replace(/%d/, heroDataTmp.name));
                 return;
-
             }
         }
 
@@ -205,9 +206,51 @@ export function HeroEditor(props) {
             props.m_saveModifiedHero(heroDataTmp);
 
         setHeroDataTmp(null);
-        console.log("Aqui");
-        console.log(props.m_editor)
 
+    }
+
+    function openFile() {
+        document.getElementById('file-uploader-id').click();
+    }
+
+    function checkFile() {
+        var reader = new FileReader();
+        var fileUploader = document.getElementById('file-uploader-id');
+        var newImage = null;
+
+        if (fileUploader.files.length>1) {
+            alert(props.state.interface.err_multiple_files);
+            return;
+        }
+
+        if (fileUploader.files.length) {
+            if (fileUploader.files[0].size>MAX_FILE_SIZE) {
+                alert(props.state.interface.err_image_size.replace(/%d/, MAX_FILE_SIZE/100));
+                return;
+            }
+
+            switch (fileUploader.files[0].type) {
+                case "image/gif":
+                case "image/jpeg":
+                case "image/png":
+                case "image/svg+xml":
+                    reader.onloadend = function () {
+                        newImage = reader.result;
+                        setHeroDataTmp(
+                            {
+                                id: heroDataTmp.id,
+                                name: heroDataTmp.name,
+                                series: heroDataTmp.series,    
+                                thumb: newImage
+                            }
+                        );
+                    }
+                    reader.readAsDataURL(fileUploader.files[0]);
+                    break;
+                default:
+                    alert(props.state.interface.err_invalid_image_type.replace(/%d/, fileUploader.files[0].type));
+            }
+        }
     }
 //defaultValue={ (heroDataTmp)?heroDataTmp.name:"" }
 //onBlur ={(e) => editHeroName({ key: "Blur", evt: e})}
@@ -219,10 +262,18 @@ export function HeroEditor(props) {
                 </div>
                 <div className="hero-editor-body">
                     <div className="hero-editor-img-container">
+                        <input 
+                            type="file"
+                            id="file-uploader-id"
+                            className="file-uploader"
+                            onChange={() => checkFile()}
+                        />
                         <img 
                             className="editor-img"
+                            id="editor-img-id"
                             alt="editorImg"
                             src={ (heroDataTmp)?heroDataTmp.thumb:null }
+                            onClick={openFile}
                         />
                         <input
                             className="hero-title-input"

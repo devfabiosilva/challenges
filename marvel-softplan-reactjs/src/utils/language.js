@@ -43,7 +43,10 @@ export const LANG_PT_BR = {
     serie_could_not_be_empty: "Série não pode estar vazia",
     serie_already_exists: "Série já existe %d",
     hero_name_already_exists: "Herói '%d' já existe",
-    hero_name_empty_err: "Nome do herói não deve estar vazio"
+    hero_name_empty_err: "Nome do herói não deve estar vazio",
+    err_invalid_image_type: "Tipo de imagem inválida '%d'",
+    err_image_size: "Imagem muito longa. Tamanho máximo '%d' KB",
+    err_multiple_files: "Múltiplos arquivos. Escolha apenas um arquivo"
 
 }
 
@@ -88,7 +91,10 @@ export const LANG_EN_US = {
     serie_could_not_be_empty: "Serie can not have empty field",
     serie_already_exists: "Serie already exists %d",
     hero_name_already_exists: "Hero '%d' already exists",
-    hero_name_empty_err: "Hero name can not be empty"
+    hero_name_empty_err: "Hero name can not be empty",
+    err_invalid_image_type: "Invalid image type '%d'",
+    err_image_size: "File too long. Maximum size '%d' KB",
+    err_multiple_files: "Multiple files. Choose only one file"
 
 }
 

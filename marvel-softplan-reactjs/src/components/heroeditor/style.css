@@ -56,6 +56,7 @@
     border-radius: 4px;
     padding: 5px;
     width: 150px;
+    cursor: pointer;
 }
 
 .hero-title-input {
@@ -101,4 +102,10 @@
     margin-right: 39px;
     height: 30px;
     margin-bottom: 40px;
+}
+
+.file-uploader {
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
