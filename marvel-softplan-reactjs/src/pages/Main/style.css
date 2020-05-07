@@ -74,6 +74,8 @@ form#search button {
     color: #fff;
     min-width: 240px;
     max-width: 280px;
+    min-height: 50px;
+    max-height: 70px;
 }
 
 .list-favorites {

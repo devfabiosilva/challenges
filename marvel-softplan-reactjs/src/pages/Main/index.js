@@ -146,17 +146,25 @@ export function Main(props) {
                             type="search"
 
                         />
-                        <button className="fav-button" onClick={findHero}>
+                        <button 
+                            className="fav-button" 
+                            onClick={findHero}
+                            title={ props.state.interface.find_hero_title }
+                        >
                             <FiSearch size={18} color="#FFF" />
                         </button>
                     </form>
                 </div>
                 <div className="list-favorites">
-                    <button className="saved-list-btn" onClick={openSavedFavorite}>
+                    <button 
+                        className="saved-list-btn" 
+                        onClick={openSavedFavorite}
+                        title={ props.state.interface.goto_saved_list }
+                    >
                         { props.state.interface.goto_saved_list }
                     </button>
                     <button className="lang-btn"
-                        placeholder="Language/Idioma"
+                        title="Language/Idioma"
                         onClick={
                             () => props.mainPageModifyLang((props.state.lang===L_EN_US)?L_PT_BR:L_EN_US)
                         }

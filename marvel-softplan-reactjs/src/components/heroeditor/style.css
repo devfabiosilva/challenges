@@ -57,6 +57,15 @@
     padding: 5px;
     width: 150px;
     cursor: pointer;
+    max-height: 150px;
+    max-width: 150px;
+    min-width: 150px;
+    min-height: 150px;
+}
+.serie-container-input:hover,
+.hero-title-input:hover {
+    background-color: white;
+    opacity: 0.6;
 }
 
 .hero-title-input {
@@ -66,12 +75,23 @@
     border-style: hidden;
     text-align: center;
     font-style: italic;
+    font-size: 32px;
+    transition: 0.25s;
 }
-
+/*
 .editor-series-container {
     background-color: darkslategray;
 }
+*/
 
+.remove-serie-btn {
+    width: 30px;
+    height: 30px;
+    margin: auto 0;
+    padding: 0;
+}
+
+.remove-serie-btn,
 .close-editor-window-btn {
     background-color: #ca0f0f;
 }
@@ -85,23 +105,33 @@
 }
 
 .editor-series-container {
-    height: 120px;
+    margin-top: 10px;
+    height: 150px;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
 .new-serie-input,
 .serie-container-input {
+    background-color: transparent;
+    border: none;
     width: 80%;
+    height: 35px;
     font-size: 12px;
     font-style: italic;
     text-align: center;
 }
 
+.serie-container-input {
+    transition: 0.25s;
+}
+
 .new-serie-input {
+    background-color: white;
     margin-right: 39px;
     height: 30px;
     margin-bottom: 40px;
+    width: 70%;
 }
 
 .file-uploader {

@@ -46,7 +46,17 @@ export const LANG_PT_BR = {
     hero_name_empty_err: "Nome do herói não deve estar vazio",
     err_invalid_image_type: "Tipo de imagem inválida '%d'",
     err_image_size: "Imagem muito longa. Tamanho máximo '%d' KB",
-    err_multiple_files: "Múltiplos arquivos. Escolha apenas um arquivo"
+    err_multiple_files: "Múltiplos arquivos. Escolha apenas um arquivo",
+    type_new_serie: "Digite uma nova série aqui",
+    remove_serie_btn_title: "Remover série",
+    edit_image_title: "Clique aqui para carregar uma imagem de seu computador",
+    hero_name_title_edit: "Clique aqui para editar o nome do herói",
+    edit_serie_title: "Clica aqui para editar esta série",
+    edit_my_hero_btn_title: "Clique aqui para editar este herói",
+    remove_my_hero_btn_title: "Clique aqui para remover este herói",
+    show_hero_series_title: "Clique aqui para mostrar as séries deste herói",
+    click_here_to_zoom_add: "Clique aqui para detalhes ou adicionar %d aos favoritos",
+    find_hero_title: "Encontrar herói"
 
 }
 
@@ -94,7 +104,17 @@ export const LANG_EN_US = {
     hero_name_empty_err: "Hero name can not be empty",
     err_invalid_image_type: "Invalid image type '%d'",
     err_image_size: "File too long. Maximum size '%d' KB",
-    err_multiple_files: "Multiple files. Choose only one file"
+    err_multiple_files: "Multiple files. Choose only one file",
+    type_new_serie: "Type a new serie here",
+    remove_serie_btn_title: "Remove serie",
+    edit_image_title: "Click here to change upload image from your computer",
+    hero_name_title_edit: "Click here to edit hero name",
+    edit_serie_title: "Click here to edit this serie",
+    edit_my_hero_btn_title: "Click here to edit this hero",
+    remove_my_hero_btn_title: "Click here to remove this hero",
+    show_hero_series_title: "Click here to show this hero series",
+    click_here_to_zoom_add: "Click here to zoom or add hero %d to favorite",
+    find_hero_title: "Find hero"
 
 }
 

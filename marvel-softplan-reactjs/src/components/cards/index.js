@@ -3,6 +3,7 @@ import './style.css';
 import { f_getKey } from '../../utils';
 import { connect } from 'react-redux';
 import { m_openViewerHeroDetail } from '../../actions'
+import loading from '../../assets/loading.gif';
 
 export function Cards( props ) {
 
@@ -19,10 +20,11 @@ export function Cards( props ) {
                                     <div key={f_getKey()} className="card-thumbnail">
                                         <img 
                                             key={f_getKey()}
-                                            src={val.thumb}
+                                            src={val.thumb||loading}
                                             alt="imagecard"
                                             className="card-img"
                                             onClick={() => props.openViewer(val)}
+                                            title={props.state.interface.click_here_to_zoom_add.replace(/%d/, val.name)}
                                         />
                                     </div>
                                     <div key={f_getKey()} className="card-name">
@@ -53,10 +55,11 @@ export function Cards( props ) {
                                     <div key={f_getKey()} className="card-thumbnail">
                                         <img 
                                             key={f_getKey()}
-                                            src={val.thumb}
+                                            src={val.thumb||loading}
                                             alt="imagecard"
                                             className="card-img"
                                             onClick={() => props.openViewer(val)}
+                                            title={props.state.interface.click_here_to_zoom_add.replace(/%d/, val.name)}
                                         />
                                     </div>
                                     <div key={f_getKey()} className="card-name">
@@ -82,7 +85,7 @@ export function Cards( props ) {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-
+    state: state.m_setLanguage
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

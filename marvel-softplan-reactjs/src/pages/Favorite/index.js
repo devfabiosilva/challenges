@@ -51,7 +51,6 @@ export function Accordeon({ parentProps, val }) {
                             key={f_getKey()}
                             className="fav-img" alt="img-fav"
                             src={val.thumb}
-                            onClick={() => alert("Imagem")}
                         />
                     </div>
                     <div
@@ -59,6 +58,7 @@ export function Accordeon({ parentProps, val }) {
                         key={f_getKey()}
                         className="fav-item-name"
                         onClick={toggleThisAccordeon}
+                        title={parentProps.state.interface.show_hero_series_title}
                     
                     >
                         { val.name }
@@ -71,7 +71,7 @@ export function Accordeon({ parentProps, val }) {
                             key={f_getKey()}
                             className="edit-btn"
                             onClick={ () => editMyHero(val) }
-
+                            title={ parentProps.state.interface.edit_my_hero_btn_title }
                         >
                             <FiEdit size={16} />
                         </button>
@@ -79,6 +79,7 @@ export function Accordeon({ parentProps, val }) {
                             className="remove-btn"
                             key={val.id}
                             onClick={() => parentProps.removeFromList(val.id)}
+                            title={ parentProps.state.interface.remove_my_hero_btn_title }
                         >
                             <FiTrash2 size={16} />
                         </button>

@@ -4,6 +4,7 @@ from 'react';
 import { connect } from 'react-redux';
 import { m_showEditor, m_editHero } from '../../actions';
 import { f_getKey } from '../../utils';
+import { FiTrash2 } from 'react-icons/fi';
 import './style.css';
 
 const MAX_FILE_SIZE = 100000;
@@ -15,7 +16,7 @@ export function HeroEditor(props) {
 
     useEffect(
         () => {
-            (heroDataTmp)?setHeroName(heroDataTmp.name):setHeroDataTmp(props.m_editor); 
+            (heroDataTmp)?setHeroName(heroDataTmp.name):setHeroDataTmp(props.m_editor);
         },
         [
             props.m_editor, 
@@ -158,6 +159,7 @@ export function HeroEditor(props) {
                 }
             );
             e.target.value = "";
+            document.getElementById('editor-series-container-id').scrollTop = document.getElementById('editor-series-container-id').scrollHeight;
         }
 
     }
@@ -225,7 +227,7 @@ export function HeroEditor(props) {
 
         if (fileUploader.files.length) {
             if (fileUploader.files[0].size>MAX_FILE_SIZE) {
-                alert(props.state.interface.err_image_size.replace(/%d/, MAX_FILE_SIZE/100));
+                alert(props.state.interface.err_image_size.replace(/%d/, MAX_FILE_SIZE/1000));
                 return;
             }
 
@@ -252,8 +254,7 @@ export function HeroEditor(props) {
             }
         }
     }
-//defaultValue={ (heroDataTmp)?heroDataTmp.name:"" }
-//onBlur ={(e) => editHeroName({ key: "Blur", evt: e})}
+
     return (
         <div className="hero-editor-container" style={{display:(heroDataTmp)?"flex": "none"}}>
             <div className="hero-editor-window">
@@ -274,6 +275,7 @@ export function HeroEditor(props) {
                             alt="editorImg"
                             src={ (heroDataTmp)?heroDataTmp.thumb:null }
                             onClick={openFile}
+                            title={ props.state.interface.edit_image_title }
                         />
                         <input
                             className="hero-title-input"
@@ -283,9 +285,13 @@ export function HeroEditor(props) {
                             onChange={(e) => setHeroName(e.target.value)}
                             onKeyPress={(e) => editHeroName({ key: e.key, evt: e })}
                             onBlur ={(e) => editHeroName({ key: "Blur", evt: e})}
+                            title= { props.state.interface.hero_name_title_edit }
                         />
                     </div>
-                    <div className="editor-series-container">
+                    <div 
+                        className="editor-series-container"
+                        id="editor-series-container-id"
+                    >
                         <div className="series-name">
                             {
                                 (heroDataTmp)?
@@ -300,12 +306,15 @@ export function HeroEditor(props) {
                                                         defaultValue={ item.name }
                                                         onKeyPress={(e)=>editSerie({ key: e.key, index, evt: e })}
                                                         onBlur ={(e)=>editSerie({ key: "Blur", index, evt: e})}
+                                                        title={props.state.interface.edit_serie_title}
                                                     />
                                                     <button
                                                         key={index}
+                                                        className="remove-serie-btn"
                                                         onClick={() => deleteSerie(index)}
+                                                        title={props.state.interface.remove_serie_btn_title}
                                                     >
-                                                        x
+                                                        <FiTrash2 size={12} />
                                                     </button>
                                                 </div>
                                             )
@@ -317,7 +326,7 @@ export function HeroEditor(props) {
                                 <input 
                                     className="new-serie-input"
                                     type="text"
-                                    placeholder="Digite nova série aqui"
+                                    placeholder={props.state.interface.type_new_serie}
                                     onKeyPress={(e) => addNewSerie(e)}
                                     onBlur={(e) => { e.target.value="" } }
                                 />                                    
@@ -329,12 +338,14 @@ export function HeroEditor(props) {
                     <button
                         className="close-editor-window-btn"
                         onClick={ () => saveAndCloseWindow(false) }
+                        title={ props.state.interface.editor_btn_cancel_and_close }
                     >
                         { props.state.interface.editor_btn_cancel_and_close }
                     </button>
                     <button
                         className="close-and-save"
                         onClick={ () => saveAndCloseWindow(true) }
+                        title={ props.state.interface.editor_btn_save_and_close }
                     >
                         { props.state.interface.editor_btn_save_and_close }
                     </button>
