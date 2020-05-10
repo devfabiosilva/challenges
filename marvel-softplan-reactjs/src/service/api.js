@@ -11,10 +11,10 @@ export const THUMBNAIL_PER_PAGE = 8;
 
 // https://developer.marvel.com/documentation/authorization
 
-export async function allHeroes(offset, findHero=null) {
+export async function allHeroes(offset, findHero=null, simulateError=false) {
 
     const { ts, apiKey, privKey } = credentials;
-    const hash = md5(ts + privKey + apiKey);
+    const hash = (simulateError)?"testError":md5(ts + privKey + apiKey);
     const param = `/characters?${(findHero)?`nameStartsWith=${findHero}&`:""}limit=${THUMBNAIL_PER_PAGE}&offset=${offset}&ts=${ts}&apikey=${apiKey}&hash=${hash}`;
     let data;
 
