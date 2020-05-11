@@ -1,6 +1,6 @@
 # Desafio Marvel da Softplan
 
-Teste: <a href="https://meutesteabc.netlify.app/">desafio marvel</a>
+Teste: <a href="https://mymarvelchallenge.netlify.app">desafio marvel</a>
 
 ## :dart: Aplicação criada como parte do desafio Softplan de:
 - Criar uma lista de cards para exibir os personagens mostrando a imagem e o nome;
@@ -16,7 +16,7 @@ Teste: <a href="https://meutesteabc.netlify.app/">desafio marvel</a>
 - Interface bilingue (**Inglês** e **Portugês**)
 - Suporte a multilinguagem utilizando JSON e React Redux
 - Paginação e busca podem ser feitas também na barra de navegação do navegador utilizando recursos nativos do JavaScript
-- Sistema de busca e offset utiliza apenas um recursos da API marvel
+- Sistema de busca e offset utilizam apenas um recurso da API da Marvel
 - Detecção do formato e tamanho de arquivo de imagem para edição dos heróis Marvel
 - Ocultação da ApiKey da barra de navegação utilizando recusos nativos do JavaScript
 

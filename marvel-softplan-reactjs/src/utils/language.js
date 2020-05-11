@@ -128,7 +128,7 @@ export function getMarvelLanguageFromLocalStorage() {
 
     if ( ( language === null ) || ( language === undefined ) ) {
 
-        localStorage.setItem(MARVEL_LANGUAGE, L_EN_US)
+        localStorage.setItem(MARVEL_LANGUAGE, L_EN_US);
         language = localStorage.getItem(MARVEL_LANGUAGE);
 
     }
