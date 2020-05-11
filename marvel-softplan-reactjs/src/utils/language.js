@@ -1,3 +1,7 @@
+/*
+ * Aqui está guardado a tradução da interface. Disponível em 2 idiomas.
+ * Pode se adicionar mais para a interface em questão
+ */
 export const L_PT_BR = "pt-br";
 export const L_EN_US = "en-us";
 const MARVEL_LANGUAGE = 'marvel_language';

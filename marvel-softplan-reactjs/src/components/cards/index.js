@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import { m_openViewerHeroDetail } from '../../actions'
 import loading from '../../assets/loading.gif';
 
+/*
+ * Componente responsável por exibir os thumbnails da página inicial
+ */
+
 export function Cards( props ) {
 
     return (

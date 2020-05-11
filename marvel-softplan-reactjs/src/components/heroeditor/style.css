@@ -65,7 +65,8 @@
 .serie-container-input:hover,
 .hero-title-input:hover {
     background-color: white;
-    opacity: 0.6;
+    border-radius: 8px;
+    opacity: 0.8;
 }
 
 .hero-title-input {
@@ -123,7 +124,7 @@
 }
 
 .serie-container-input {
-    transition: 0.25s;
+    transition: 0.3s;
 }
 
 .new-serie-input {

@@ -5,6 +5,9 @@ import { m_favoriteAlreadyExists } from '../../reducers/favorite';
 import { m_addToFavorite } from '../../actions';
 import './style.css';
 
+/*
+ * Componente usado para visualizar o herói selecionado
+ */
 export function HeroViewer( props ) {
 
     function addToFav(data) {

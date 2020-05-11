@@ -8,9 +8,13 @@ import { FiTrash2 } from 'react-icons/fi';
 import './style.css';
 
 const MAX_FILE_SIZE = 100000;
-
+/*
+ * Componente responsável por editar os heróis marvel e salvá-lo localmente no estado global
+ * do Redux
+ */
 export function HeroEditor(props) {
 
+    /* Dados do herói a ser editado (temporário). Pode ser cancelado */
     const [ heroDataTmp, setHeroDataTmp ] = useState(null)
     const [ heroName, setHeroName ] = useState("");
 

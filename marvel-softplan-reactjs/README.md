@@ -13,7 +13,7 @@ Teste: <a href="https://meutesteabc.netlify.app/">desafio marvel</a>
 - Utilizar @testing-library/react para testes;
 
 ## :star: Recursos extras adicionados ao projeto
-- Interface bilingue (**INGLÊS** e **PORTUGUÊS**)
+- Interface bilingue (**Inglês** e **Portugês**)
 - Suporte a multilinguagem utilizando JSON e React Redux
 - Paginação e busca podem ser feitas também na barra de navegação do navegador utilizando recursos nativos do JavaScript
 - Sistema de busca e offset utiliza apenas um recursos da API marvel
@@ -39,6 +39,8 @@ Teste: <a href="https://meutesteabc.netlify.app/">desafio marvel</a>
 	
 ## :books: Instalação:
 
+Crie uma conta Marvel e obtenha sua API Key [aqui](https://www.marvel.com/signin?referer=https%3A%2F%2Fdeveloper.marvel.com%2Faccount)
+
 Clone o repositório:
 ```sh
 $ git clone https://github.com/devfabiosilva/challenges
@@ -51,12 +53,34 @@ Instale as dependências:
 ```sh
 $ yarn install
 ```
+Vá em [marvel-softplan-reactjs/src/utils/secure.js](https://github.com/devfabiosilva/challenges/blob/master/marvel-softplan-reactjs/src/utils/secure.js) e adicione sua **API KEY** e sua **CHAVE PRIVADA** que você obteve da Marvel ao criar sua conta.
+
+```javascript
+export const MARVEL_API_KEY = "<SUA API KEY MARVEL>"; // Sua Marvel API KEY
+export const MARVEL_PRIVATE_KEY = "<SUA CHAVE PRIVADA MARVEL>"; // Sua Marvel PRIVATE KEY
+```
+
 Inicie o servidor:
 ```sh
 $ yarn start
 ```
 
+## :heavy_check_mark: Para iniciar os testes
+
+```sh
+$ yarn test
+```
+
 ----------
+
+## :heavy_exclamation_mark: Observação
+
+Ainda a página não está responsiva para mobile.
+
+## :pushpin: Pendências
+
+- Fazer pequenos ajustes no CSS para tornar a interface mais amigável
+- Colocar responsividades
 
 Feito com carinho por Fábio Pereira :innocent:
 

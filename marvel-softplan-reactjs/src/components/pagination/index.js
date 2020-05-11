@@ -12,7 +12,11 @@ import {
 import Notification, { notificationType } from '../notification';
 import { m_query } from '../../actions';
 import './style.css';
-
+/*
+ * Formata os dados vindo da API marvel e retorna somente os valores relevantes
+ * como 
+ *  id, name, thumb e series
+ */
 function formatPagination(marvel_res) {
 
     let data = [];
@@ -118,7 +122,8 @@ export function Paginate(props) {
             }
 
             if (props.marvel_query_pagination.update_query) {
-                
+                /* Deve se retornar apenas números da página. Se a páagina passar um string, ele
+                deve ser convertido para ficar comapatível com o react-paginate */
                 if (typeof( tmp = props.marvel_query_pagination.page ) === 'number')
                     tmp--;
                 else if ( isNaN( tmp = parseInt( tmp ) ) ) 
@@ -262,16 +267,9 @@ export function Paginate(props) {
 
     function calculatePagination(pgInfo) {
 
-/*
-   {
-//Usar TypeScript no futuro
-        offset: '',
-        limit: '',
-        total: '',
-        count: ''
-    
-    });
-*/
+    /*
+     * Responsável por calcular a página atual e o numero de páginas
+     */
         let calculated = null;
 
         if (pgInfo) {

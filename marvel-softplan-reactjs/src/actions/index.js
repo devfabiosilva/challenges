@@ -46,6 +46,12 @@ export function m_deleteAllFromFavorite() {
 export function m_modifyLanguage(lang) {
     return { type: MODIFY_LANGUAGE, lang: setMarvelLanguageToLocalStorage(lang) }
 }
+
+ /* 
+  * A ação abaixo atribui a barra de navegação alterações feitas pelo usuário através da
+  * paginação e a máquina de busca. Sendo assim a iteração podendo ser feita através da
+  * barra de navegação ou pela interface, ao mesmo tempo ocultando a API KEY da Marvel
+  */
 export function m_query(query) {
 
     let query_tmp, page_query_exists, name_query_exists, query_data;

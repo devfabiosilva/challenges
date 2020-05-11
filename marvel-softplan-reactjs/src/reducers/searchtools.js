@@ -1,5 +1,7 @@
 import { m_Actions } from '../actions';
-
+/*
+ * Informaões da barra de navegação e iterações são guardadas neste estado global
+ */
 const MARVEL_INITIAL_STATE_QUERY = {
 
     update_query: false,

@@ -28,7 +28,11 @@ export function Main(props) {
     useEffect (
 
         () => {
-
+            /*
+             * Iteração barra de navegação e interface do usuário.
+             * Mudanças feitas pelo paginate e o buscador refletirão na barra de navegação
+             * e vice-versa
+             */
             let marvelLanguage = getMarvelLanguageFromLocalStorage();
             let findNameInQuery, findPageInQuery, nameTmp, pageTmp;
 

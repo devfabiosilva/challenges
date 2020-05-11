@@ -22,7 +22,13 @@ export const notificationType = {
     NOTF_ERROR: 3
     
 }
-
+/*
+ * Notificações a serem exibidas para o usuário
+ * São elas 
+ *   NOTF_INFO: Informação
+ *   NOTF_ALERT: Alerta
+ *   NOTF_ERROR: Erro
+ */
 function NotfIcon( { nAlert, nError } ) {
 
     if (nAlert)
