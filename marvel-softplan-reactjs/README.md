@@ -23,7 +23,7 @@ Teste: <a href="https://mymarvelchallenge.netlify.app">desafio marvel</a>
 ---
 **Tela da aplicação**:
 
- <img width="682px" height="384px" src="https://github.com/devfabiosilva/challenges/tree/master/marvel-softplan-reactjs/preview/preview.gif">
+ <img width="682px" height="384px" src="https://raw.githubusercontent.com/devfabiosilva/challenges/master/marvel-softplan-reactjs/preview/preview.gif">
 
 ## :computer: Recursos e tecnologias usadas
 - ReactJS
