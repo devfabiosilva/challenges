@@ -89,5 +89,10 @@ Ainda a página não está responsiva para mobile.
 
 O API da Marvel retorna as imagens dos heróis em http (não seguro) ao invés de HTTPS (seguro). No Chrome aparece no console o alerta e a conversão para o acesso HTTPS. No Firefox geralmente aparece um alerta dizendo que alguns dos componentes não estão critografados. Ignore as mensagens.
 
+## :sunglasses: Sobre
+
 Feito com carinho por Fábio Pereira :innocent:
+
+## :copyright: Licença
+MIT
 
